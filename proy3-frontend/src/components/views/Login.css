@@ -47,53 +47,9 @@
     border-radius: 10px;
   }
   
-  /* .imagen {
-    background-image: url(../../img/purplewall.jpg);
-    background-size: cover;
-  
-    display: flex;
-    flex-direction: column;
-  } */
   
   .color-texto {
     color: rgb(255, 227, 191);
   }
   
-  /* @media all and (max-width: 760px) {
-    .rowLadrillo {
-      background-image: url(../../img/purplewall-40.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      padding: 20px;
-      padding-top: 180px;
-    }
-  }
-  @media all and (min-width: 761px) and (max-width: 991px) {
-    .rowLadrillo {
-      background-image: url(../../img/purplewall-40.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      padding: 20px;
-      padding-top: 150px;
-    }
-  }
-  @media all and (min-width: 992px) and (max-width: 1399px) {
-    .rowLadrillo {
-      background-image: url(../../img/purplewall-40.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      padding: 150px 70px 70px 70px;
-    }
-  }
-  @media all and (min-width: 1400px) {
-    .rowLadrillo {
-      background-image: url(../../img/purplewall.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      padding: 150px 200px 70px 200px;
-    }
-  } */
+  
