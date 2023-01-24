@@ -11,7 +11,14 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
+  {
+    "dependencies": {
+      "axios": "^1.2.3",
+      "bootstrap": "^5.2.3",
+      "react-bootstrap": "^2.7.0",
+      "react-router-dom": "^6.7.0"
+    }
+  }  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
