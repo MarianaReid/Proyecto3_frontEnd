@@ -6,3 +6,11 @@ export const cantidadCaracteres = (input, min, max) => {
     }
 }
 
+export function validarClave (input) {
+let patron = /^(?=.[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&#;$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{8,15}$/;
+if (patron.test(input)){
+    return true;
+}else{
+    return false;
+}
+}
