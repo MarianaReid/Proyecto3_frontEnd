@@ -1,5 +1,4 @@
 import emailjs from '@emailjs/browser';
-import React from 'react';
 
 export const sendMail = (nombre, email)=>{
     const EMAILJS_SERVICE = process.env.REACT_APP_EMAILJS_SERVICE;
