@@ -4,7 +4,6 @@ import "./Registro.css"
 import { cantidadCaracteres, validarclave, validarEmail, validarNombre } from './helperUsuario';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { sendMail } from './mandarMail';
 
 
 const Registro = ({setUsuarioLogueado}) => {
@@ -72,7 +71,6 @@ const Registro = ({setUsuarioLogueado}) => {
     //                         JSON.stringify(data)
     //                     );
     //                     setUsuarioLogueado(data);
-    //                     sendMail(nuevoUsario.nombre, nuevoUsario.email);
 
     //                     Swal.fire({
     //                         title: 'Registro exitoso',
