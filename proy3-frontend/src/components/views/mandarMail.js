@@ -9,7 +9,7 @@ export const sendMail = (nombre, email)=>{
         user_name: nombre,
         message: 'Se pudo registrar exitosamente, muchas gracias.',
         destinatario: email,
-        reply_to: 'saboreslatinos46@gmail.com'
+        reply_to: 'saboreslatinos131@gmail.com'
     };
     emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams, EMAILJS_PUBLICKEY)
         .then(function(response) {
