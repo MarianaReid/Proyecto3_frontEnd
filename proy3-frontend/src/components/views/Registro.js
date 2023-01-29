@@ -195,7 +195,7 @@ const Registro = ({setUsuarioLogueado}) => {
                 ) : null}
                 {msjErrorNombre ? (
                     <Alert variant="danger" className=" mx-3">
-                        El nombre contiene caracteres especiales, por favor eliminelos.
+                        El nombre contiene caracteres especiales, por favor eliminelo
                     </Alert>
                 ) : null}
             </Card>
