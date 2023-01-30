@@ -9,6 +9,12 @@
 - [Enzo Lobo](https://github.com/elobo81)
 - [Emmanuel Rizza](https://github.com/Emmanuelrizza)
 
+
+## 📜Objetivo
+
+Desarrollar una aplicación para que los clientes elijan entre distintos menús del restaurante y puedan hacer su pedido.
+
+
 ## 📜 Requerimientos 
 
 - **Login**: Pantalla de login donde el usuario puede autenticarse o darse de alta a través de un enlace al formulario de registro. Se debe verificar si la el usuario existe y si tiene la cuenta verificada, en caso que no mostrar una pantalla diciendo: “Aún no verificaste tu cuenta, accede al mail que te enviamos para activarla.”
