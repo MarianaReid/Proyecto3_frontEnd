@@ -1,4 +1,4 @@
-# Proyecto Final – comision 17i
+# Proyecto Final – Frontend - comision 17i
 <p align="center"> <img src="proy3-frontend/src/img/logo.png" alt="logo-saboreslatinos" height="200" width="200"/> </p>
 
 ## 👪 Integrantes 
