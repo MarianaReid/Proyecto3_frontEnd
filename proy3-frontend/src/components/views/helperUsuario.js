@@ -1,4 +1,4 @@
-export const cantidadCaracteres = (input, min , max) => {
+export const cantidadCaracteres = (input, min, max) => {
     if (input.length >= min && input.length <= max) {
         return true;
     } else {
@@ -8,7 +8,7 @@ export const cantidadCaracteres = (input, min , max) => {
 
 export function validarclave(input) {
     let patron =
-         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{8,15}$/; 
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{8,15}$/;
 
     if (patron.test(input)) {
         return true;
@@ -25,11 +25,11 @@ export function validarEmail(input) {
     }
 }
 
-export function validarNombre(input){
+export function validarNombre(input) {
     let patron = /^[a-zA-Z]+([ ][a-zA-Z]+)*$/;
-    if (patron.test(input)){
+    if (patron.test(input)) {
         return true
-    }else{
+    } else {
         return false
     }
 }
