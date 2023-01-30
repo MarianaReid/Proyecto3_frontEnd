@@ -53,3 +53,47 @@ npm i
 ```
 npm run
 ```
+## ⬇️ Instalacion Local
+
+### Opcion 1️⃣ 
+Para poder utilizarlo de forma local, primero deberiamos descargar el [Backend]( https://github.com/MarianaReid/Proyecto3-RollingCode)
+
+1. Clonamos el repositorio del frontend 
+```
+git clone https://github.com/MarianaReid/Proyecto3_frontEnd
+```
+
+2. Instalamos todas las dependencias
+```
+npm i
+```
+
+2. Ejecutamos la aplicacion web
+```
+npm run
+```
+### Opcion 2️⃣
+1. Clonamos el repositorio del frontend 
+```
+git clone https://github.com/MarianaReid/Proyecto3_frontEnd
+```
+
+2. Instalamos todas las dependencias
+```
+npm i
+```
+
+3. Si tenemos instalado json server podemos simular una api ejecutando el siguiente comando en una terminal, de lo contrario instalarlo en [json server](https://www.npmjs.com/package/json-server) 
+
+```
+json-server --watch db.json --port 4040
+```
+
+4. Se debe crear un .env con las rutas del backend
+```
+
+5. En una terminal aparte ejecutamos la aplicacion web
+```
+npm run
+```
+
