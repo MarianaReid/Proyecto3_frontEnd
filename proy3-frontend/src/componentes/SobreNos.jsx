@@ -29,12 +29,8 @@ const SobreNos = () => {
                 <div>
                     <h3>Enzo Lobo</h3>
                 </div>
-            </div><div>
-                {/* <Image src= {imagenSofia}/> */}
-                <div>
-                    <h3>Sofia Garbero</h3>
-                </div>
-            </div><div>
+            </div>
+            <div>
                 <Image src= {imagenEsteban}/>
                 <div>
                     <h3>Esteban Orrego</h3>
@@ -43,11 +39,6 @@ const SobreNos = () => {
                 <Image src= {imagenMariana}/>
                 <div>
                     <h3>Mariana Reid</h3>
-                </div>
-            </div><div>
-                {/* <Image src= {imagenPablo}/> */}
-                <div>
-                    <h3>Pablo Ismael</h3>
                 </div>
             </div></>
     )
