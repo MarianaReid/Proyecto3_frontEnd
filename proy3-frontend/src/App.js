@@ -1,11 +1,11 @@
 import React from 'react';
-import Registro from './components/views/Registro';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './components/views/Home';
 
 const App = () => {
     return (
         <div>
-           <Registro></Registro>
+            <Home></Home>          
         </div>
     );
 };
