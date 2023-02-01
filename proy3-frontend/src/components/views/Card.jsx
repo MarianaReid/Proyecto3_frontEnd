@@ -1,9 +1,9 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 
 
-const Menu = ({ imageSource, Title }) => {
+const Menu = ({ imageSource, title }) => {
     return (
         <Container className="justify-content-xs-center">
             <Col>
@@ -11,7 +11,7 @@ const Menu = ({ imageSource, Title }) => {
                     <Card.Img variant="top" src={imageSource} />
                     <Card.ImgOverlay>
                         <Card.Body>
-                            <h4><Card.Title>{Title}</Card.Title></h4>
+                            <h4><Card.Title>{title}</Card.Title></h4>
                         </Card.Body>
                     </Card.ImgOverlay>
                 </Card>
