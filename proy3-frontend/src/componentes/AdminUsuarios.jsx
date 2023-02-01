@@ -1,18 +1,18 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 
 
-const AdminUsuarios = ({ token }) => {
-    const [usuarios, setUsuarios] = useState([]);
-    useEffect(() => {
-        const getUsuarios = async () => {
-            const headers = { 'x-auth-token': token }
-            const { data } = await axios.get('users', { headers });
-            setUsuarios(data);
-        };
-        getUsuarios();
-    }, [token]);
+const AdminUsuarios = ({ usuarios }) => {
+    // const [usuarios, setUsuarios] = useState([]);
+    // useEffect(() => {
+    //     const getUsuarios = async () => {
+    //         const headers = { 'x-auth-token': token }
+    //         const { data } = await axios.get('users', { headers });
+    //         setUsuarios(data);
+    //     };
+    //     getUsuarios();
+    // }, [token]);
     return (
         <div className="container my-3">
             <h1>Usuarios</h1>

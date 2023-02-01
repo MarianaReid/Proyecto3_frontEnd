@@ -14,7 +14,7 @@ const AdminListaProductos = ({ token, producto }) => {
     const handleCloseProd = () => setshowProducto(false);
     const getProductos = async () => {
         const headers = { "x-auth-token": token };
-        const { data } = await axios.get("produc", { headers });
+        const { data } = await axios.get("productos", { headers });
         setProductos(data);
     }
     useEffect(() => {

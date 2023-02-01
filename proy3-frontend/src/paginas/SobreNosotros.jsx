@@ -1,9 +1,10 @@
+/* eslint-disable no-empty-pattern */
 import { Container, Image } from 'react-bootstrap';
 import SobreNos from '../componentes/SobreNos';
 import imagenSobreNos from "../Imagenes/imagenSobreNos.jpeg";
 // import Navbar from '../componentes/Navbar';
 
-const SobreNosotros = ({ token, usuario, setToken }) => {
+const SobreNosotros = ({}) => {
     return (
         <>
             {/* <Navbar token={token} usuario={usuario} setToken={setToken} /> */}

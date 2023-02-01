@@ -1,11 +1,12 @@
-import { Navigate } from "react-router-dom";
-import { useContextState } from "../context/ContextState";
+import { Route } from "react-router-dom"
+import Admin from "../paginas/Admin"
 
 
-const PrivateRoutes = ({ children }) => {
-    const { contextState } = useContextState();
+
+const PrivateRoutes = () => {
+
     return (
-        contextState.userLogged && contextState.userData.role === 'ADMIN' ? children : <Navigate to='/admin' />
+        <Route path='/admin' element={<Admin />} />
     )
 }
 
