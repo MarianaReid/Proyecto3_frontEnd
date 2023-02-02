@@ -4,9 +4,9 @@ import Home from './components/views/Home';
 
 const App = () => {
     return (
-        <div>
+        <>
             <Home></Home>          
-        </div>
+        </>
     );
 };
 

@@ -5,6 +5,7 @@ import entrada from './img/entrada.jpg'
 import platoprincipal from './img/platoprincipal.jpg'
 import postre from './img/postre.jpg'
 import bebidas from './img/bebidas.jpg'
+import OffCanvas from "./Navbar";
 
 
 const home = [
@@ -35,6 +36,7 @@ const Home = () => {
 
   return (
     <>
+      <OffCanvas />
       <Opciones />
       <Container>
         <Row className="text-center">
