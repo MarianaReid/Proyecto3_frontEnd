@@ -1,5 +1,6 @@
 import Menu from "./Card"
 import Opciones from "./Carrusel"
+import { Container, Row, Col } from 'react-bootstrap';
 import entrada from './img/entrada.jpg'
 import platoprincipal from './img/platoprincipal.jpg'
 import postre from './img/postre.jpg'
@@ -33,19 +34,22 @@ const home = [
 const Home = () => {
 
   return (
-    <div>
-      <Opciones></Opciones>
-      <div className="container">
-        <div className="row">
-          {
-            home.map((home) => (
-              <div key={home.id} className="col-md-5">
-                <Menu title= {home.title} imageSource={home.image}/>
-              </div>
-            ))}
-        </div>
-      </div>
-    </div>
+    <>
+      <Opciones />
+      <Container>
+        <Row className="text-center">
+          <h2>Categorias</h2>
+        </Row>
+        <Row>
+            {
+              home.map((home) => (
+                <Col key={home.id} xs={6}>
+                  <Menu title={home.title} imageSource={home.image} />
+                </Col>
+              ))}
+        </Row>
+      </Container>
+    </>
   )
 }
 
