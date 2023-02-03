@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Form, Modal, Row, Table } from 'react-bootstrap';
 
 
-const AdminListaProductos = ({ token, producto }) => {
+const AdminListaProductos = ({producto}) => {
 
     const [editarProducto, setEditarProducto] = useState({});
     const [productos, setProductos] = useState([]);
@@ -13,17 +13,17 @@ const AdminListaProductos = ({ token, producto }) => {
     const handleClose = () => setshow(false);
     const handleCloseProd = () => setshowProducto(false);
     const getProductos = async () => {
-        const headers = { "x-auth-token": token };
-        const { data } = await axios.get("productos", { headers });
+        // const headers = { "x-auth-token": token };
+        const { data } = await axios.get("productos");
         setProductos(data);
-    }
+    };
     useEffect(() => {
         getProductos();
     }, []);
 
     const borrarProducto = async (id) => {
-        const headers = { "x-auth-token": token };
-        await axios.delete(`productos/${id}`, { headers });
+        // const headers = { "x-auth-token": token };
+        await axios.delete(`productos/${id}`);
         getProductos();
     };
 
@@ -47,8 +47,8 @@ const AdminListaProductos = ({ token, producto }) => {
         }
 
         try {
-            const headers = { "x-auth-token": token };
-            axios.put(`productos/$(editProducto.id)`, editarProducto, { headers });
+            // const headers = { "x-auth-token": token };
+            axios.put(`productos/$(editProducto.id)`, editarProducto);
             getProductos();
             setshow(false);
         } catch (error) {

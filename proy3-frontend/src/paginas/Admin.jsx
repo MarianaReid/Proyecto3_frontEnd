@@ -1,12 +1,12 @@
-import { Navigate, Route } from "react-router-dom";
+import { Link, Navigate, Route } from "react-router-dom";
 import AdminNav from '../componentes/AdminNav';
 import AdminUsuarios from '../componentes/AdminUsuarios';
 import CrearProducto from '../componentes/CrearProducto';
 import AdminListaProductos from '../componentes/AdminListaProductos';
 
 
-const Admin = ({}) => {
-
+const Admin = () => {
+    
     return (
         <>
             <AdminNav />
@@ -16,10 +16,10 @@ const Admin = ({}) => {
                         <AdminUsuarios  />
                     </Route>
                     <Route path='/admin/productos'>
-                        <CrearProducto  />
+                        <CrearProducto />
                     </Route>
                     <Route path='/admin/listaProductos'>
-                        <AdminListaProductos  />
+                        <AdminListaProductos />
                     </Route>
                 </Navigate>
             </div>

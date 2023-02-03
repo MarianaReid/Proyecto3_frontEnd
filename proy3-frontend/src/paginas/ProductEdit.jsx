@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import { getOneProduct } from "../Services/productServices";
 import FormularioProducto from "./FormularioProducto";
 
 
@@ -11,15 +11,23 @@ const ProductEdit = () => {
     // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(false);
 
-    // useEffect(() => {
-    //     const getProduct = async () => {
-    //         setLoading(true);
-    //         const { data } = await getOneProduct(id);
-    //         setProducto(data);
-    //         setLoading(false);
-    //     }
-    //     getProduct();
-    // }, [id]);
+    const getOneProduct = async (id) => {
+        try {
+            return await axios.get(`/product/${id}`)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        const getProduct = async () => {
+            setLoading(true);
+            const { data } = await getOneProduct(id);
+            setProducto(data);
+            setLoading(false);
+        }
+        getProduct();
+    }, [id]);
 
     return (
         <div className="container mt-5">
