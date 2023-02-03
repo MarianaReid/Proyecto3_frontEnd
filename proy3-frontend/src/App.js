@@ -1,13 +1,13 @@
 import React from 'react';
-import Registro from './components/views/Registro';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavScroll from './components/views/Navbar';
+import Footer from './components/Footer';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const App = () => {
     return (
-        <div>
-            <NavScroll></NavScroll>
-           <Registro></Registro>
+        <div>                     
+            <Footer></Footer>
         </div>
     );
 };
