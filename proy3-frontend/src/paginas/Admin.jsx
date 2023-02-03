@@ -1,4 +1,4 @@
-import { Link, Navigate, Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 import AdminNav from '../componentes/AdminNav';
 import AdminUsuarios from '../componentes/AdminUsuarios';
 import CrearProducto from '../componentes/CrearProducto';

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import CardProductos from '../componentes/CardProductos';
 
 
-const SeccionProductos = ({ token, usuario, setToken }) => {
+const SeccionProductos = () => {
     const [productos, setProductos] = useState([]);
     useEffect(() => {
         const getProductos = async () => {
