@@ -1,14 +1,14 @@
 import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
+import Image from 'react-bootstrap/Image'
 
 const Footer = () => {
   return (
-    <MDBFooter bgColor='dark' className='text-center text-lg-start text-white'>
+    <MDBFooter bgColor='dark' className='text-center text-lg-start text-white md-2'>
       <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
         <div className='me-5 d-none d-lg-block'>
-          <span>Get connected with us on social networks:</span>
+          <span>Conectate con Nosotros a Nuestras Redes Sociales:</span>
         </div>
-
         <div>
           <a href='https://es-la.facebook.com/' target={'_blank'} className='me-4 text-reset' rel="noreferrer">
             <MDBIcon fab icon="facebook-f" />
@@ -26,13 +26,9 @@ const Footer = () => {
           <MDBRow className='mt-3'>
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
-                <MDBIcon icon="gem" className="me-3" />
-                Company name
+                <MDBIcon className="me-3" />
               </h6>
-              <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit.
-              </p>
+              <Image src='https://i.postimg.cc/prr2V8VD/Logo-removebg-preview-1.png' fluid />
             </MDBCol>
             <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>INGRESA</h6>
@@ -52,7 +48,6 @@ const Footer = () => {
                 </a>
               </p>
             </MDBCol>
-
             <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Contacto</h6>
               <p>
