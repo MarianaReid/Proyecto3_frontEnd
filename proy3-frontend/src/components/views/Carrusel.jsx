@@ -1,45 +1,44 @@
 import Carousel from 'react-bootstrap/Carousel';
 
+const carouselOp = [
+    {
+        id: 1,
+        imageOp: "https://http2.mlstatic.com/D_NQ_NP_623300-MLA26451197581_112017-O.jpg",
+        titleOp: "MENU 1",
+        descriptionOp: "Soy un menu"
+    },
+    {
+        id: 2,
+        imageOp: "https://img.freepik.com/fotos-premium/plato-verduras-carne-asada_538646-4881.jpg",
+        titleOp: "MENU 2",
+        descriptionOp: "Soy un menu"
+    },
+    {
+        id: 3,
+        imageOp: "https://lavicenta.com.mx/wp-content/uploads/2020/04/carne-asada-820x450.jpg",
+        titleOp: "MENU 3",
+        descriptionOp: 'Soy un menu'
+    }
+]
+
 const Opciones = () => {
     return (
         <Carousel>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src="https://images.deliveryhero.io/image/pedidosya/products/27474453-d04362a6-de29-430a-bf97-bb1cc4d9e7b6.jpeg?quality=90&width=1152&webp=1"
-                    alt="First slide"
-                />
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src="https://images.deliveryhero.io/image/pedidosya/products/27474453-d04362a6-de29-430a-bf97-bb1cc4d9e7b6.jpeg?quality=90&width=1152&webp=1"
-                    alt="Second slide"
-                />
-
-                <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src="https://images.deliveryhero.io/image/pedidosya/products/27474453-d04362a6-de29-430a-bf97-bb1cc4d9e7b6.jpeg?quality=90&width=1152&webp=1"
-                    alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
-                </Carousel.Caption>
-            </Carousel.Item>
+            {
+                carouselOp.map((op) => (
+                    <Carousel.Item key={op.id}>
+                        <img
+                            className="d-block w-100"
+                            src={op.imageOp}
+                            alt={op.titleOp}
+                        />
+                        <Carousel.Caption>
+                            <h3>{op.titleOp}</h3>
+                            <p>{op.descriptionOp}</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                ))
+            }
         </Carousel>
     );
 }
