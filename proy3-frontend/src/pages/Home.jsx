@@ -1,12 +1,9 @@
-import Menu from "./Card"
-import Opciones from "./Carrusel"
-import { Container, Row, Col, Button, Carousel } from 'react-bootstrap';
-import entrada from './img/entrada.jpg'
-import platoprincipal from './img/platoprincipal.jpg'
-import postre from './img/postre.jpg'
-import bebidas from './img/bebidas.jpg'
-import OffCanvas from "./Navbar";
-import Footer from "./Footer";
+import Menu from "../components/Card"
+import entrada from '../components/img/entrada.jpg'
+import platoprincipal from '../components/img/platoprincipal.jpg'
+import postre from '../components/img/postre.jpg'
+import bebidas from '../components/img/bebidas.jpg'
+import { Row, Col, Button } from 'react-bootstrap';
 
 
 const home = [
@@ -36,14 +33,6 @@ const Home = () => {
 
   return (
     <>
-      <Container>
-
-        <OffCanvas />
-
-        <Row>
-          <Opciones />
-        </Row>
-
         <Row className="text-center">
           <h2>Categorias</h2>
         </Row>
@@ -63,10 +52,6 @@ const Home = () => {
             </i>
           </Button>
         </Row>
-
-        <Footer />
-
-      </Container>
     </>
   )
 }
