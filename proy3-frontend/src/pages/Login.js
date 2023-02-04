@@ -153,7 +153,7 @@ const Login = ({ setUsuarioLogueado }) => {
             variant="outline-light"
             className="mb-3 botonLogin"
             onClick={() => {
-              navigate("/registro");
+              navigate("/register");
             }}
           >
             Quiero registrarme
