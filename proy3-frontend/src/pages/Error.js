@@ -1,5 +1,5 @@
 import React from 'react';
-import error from '../../img/error.jpg'
+import error from './img/error.jpg'
 // import { Button } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 
