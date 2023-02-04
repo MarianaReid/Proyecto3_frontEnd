@@ -4,6 +4,7 @@ import platoprincipal from '../components/img/platoprincipal.jpg'
 import postre from '../components/img/postre.jpg'
 import bebidas from '../components/img/bebidas.jpg'
 import { Row, Col, Button } from 'react-bootstrap';
+import Opciones from "../components/Carrusel"
 
 
 const home = [
@@ -33,25 +34,29 @@ const Home = () => {
 
   return (
     <>
-        <Row className="text-center">
-          <h2>Categorias</h2>
-        </Row>
-        <Row>
-          {
-            home.map((home) => (
-              <Col key={home.id} xs={6}>
-                <Menu title={home.title} imageSource={home.image} />
-              </Col>
-            ))}
-        </Row>
+      <Row>
+        <Opciones />
+      </Row>
 
-        <Row className="d-grid m-auto my-3">
-          <Button variant="outline-dark" size="lg">
-            <i className="fa-sharp fa-solid fa-magnifying-glass">
-              <span className="mx-3">Buscador de productos</span>
-            </i>
-          </Button>
-        </Row>
+      <Row className="text-center">
+        <h2>Categorias</h2>
+      </Row>
+      <Row>
+        {
+          home.map((home) => (
+            <Col key={home.id} xs={6}>
+              <Menu title={home.title} imageSource={home.image} />
+            </Col>
+          ))}
+      </Row>
+
+      <Row className="d-grid m-auto my-3">
+        <Button variant="outline-dark" size="lg">
+          <i className="fa-sharp fa-solid fa-magnifying-glass">
+            <span className="mx-3">Buscador de productos</span>
+          </i>
+        </Button>
+      </Row>
     </>
   )
 }
