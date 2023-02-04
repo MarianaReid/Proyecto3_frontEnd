@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Alert, Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validarEmail, cantidadCaracteres } from "./helperUsuario";
 import Swal from "sweetalert2";
-import "./login.css";
+import "./Login.css";
 
 const Login = ({ setUsuarioLogueado }) => {
   const API_AUTH = process.env.REACT_APP_API_LOGIN;
@@ -36,8 +36,8 @@ const Login = ({ setUsuarioLogueado }) => {
       newErrors.email = "El email debe tener entre 4 y 70 caracteres";
     else if (!validarEmail(email)) newErrors.email = "Ingrese un email válido";
 
-    else if (!password || password === "") newErrors.password = "Ingrese su contraseña"; 
- 
+    else if (!password || password === "") newErrors.password = "Ingrese su contraseña";
+
     return newErrors;
   };
 
@@ -52,7 +52,7 @@ const Login = ({ setUsuarioLogueado }) => {
     }
 
     const usuario = form;
-    usuario.valido = false; 
+    usuario.valido = false;
     setMensajeError("");
 
     try {
@@ -66,13 +66,13 @@ const Login = ({ setUsuarioLogueado }) => {
 
       if (respuesta.status === 200) {
         const data = await respuesta.json();
-      
+
         setUsuarioLogueado(data);
         localStorage.setItem(
           process.env.REACT_APP_LOCALSTORAGE,
           JSON.stringify(data)
         );
-       
+
         navigate(-1);
       } else {
         Swal.fire(
@@ -121,7 +121,7 @@ const Login = ({ setUsuarioLogueado }) => {
               <Form.Control.Feedback type="invalid">
                 {errors.password}
               </Form.Control.Feedback>
-              <a href="#" className="ms-1">Olvidé la contraseña</a>
+              <Link to="/error" className="ms-1">Olvidé la contraseña</Link>
               <br />
             </Form.Group>
             <Button variant="outline-light" type="submit" className="me-1 botonLogin">
