@@ -1,6 +1,6 @@
 import Menu from "./Card"
 import Opciones from "./Carrusel"
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Carousel } from 'react-bootstrap';
 import entrada from './img/entrada.jpg'
 import platoprincipal from './img/platoprincipal.jpg'
 import postre from './img/postre.jpg'
@@ -32,19 +32,18 @@ const home = [
   },
 ]
 
-
 const Home = () => {
 
   return (
     <>
       <Container>
-        
+
         <OffCanvas />
-        
+
         <Row>
           <Opciones />
         </Row>
-      
+
         <Row className="text-center">
           <h2>Categorias</h2>
         </Row>
@@ -59,14 +58,14 @@ const Home = () => {
 
         <Row className="d-grid m-auto my-3">
           <Button variant="outline-dark" size="lg">
-          <i className="fa-sharp fa-solid fa-magnifying-glass">
-            <span className="mx-3">Buscador de productos</span>
-          </i>
+            <i className="fa-sharp fa-solid fa-magnifying-glass">
+              <span className="mx-3">Buscador de productos</span>
+            </i>
           </Button>
         </Row>
 
         <Footer />
-      
+
       </Container>
     </>
   )
