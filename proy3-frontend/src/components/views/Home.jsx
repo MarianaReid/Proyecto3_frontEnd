@@ -6,6 +6,7 @@ import platoprincipal from './img/platoprincipal.jpg'
 import postre from './img/postre.jpg'
 import bebidas from './img/bebidas.jpg'
 import OffCanvas from "./Navbar";
+import Footer from "./Footer";
 
 
 const home = [
@@ -51,6 +52,7 @@ const Home = () => {
               ))}
         </Row>
       </Container>
+      <Footer />
     </>
   )
 }
