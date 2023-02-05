@@ -27,7 +27,7 @@ const Products = () => {
       {
         products.docs.map((product) => (
           <div key={product._id} className="m-auto my-4">
-            <CardProduct image={product.image} name={product.name} description={product.description} price={product.price} stock={product.stock} />
+            <CardProduct _id={product._id} image={product.image} name={product.name} description={product.description} price={product.price} stock={product.stock} />
           </div>
         ))
       }
@@ -39,7 +39,7 @@ const Products = () => {
 export default Products
 
 export const loaderProducts = async () => {
-  const res = await fetch("https://proyecto3-rolling-code-los-crack.vercel.app/api/products?limit=20");
+  const res = await fetch("https://proyecto3-rolling-code-los-crack.vercel.app/api/products?limit=20&page=1");
   const products = await res.json();
 
   return { products };

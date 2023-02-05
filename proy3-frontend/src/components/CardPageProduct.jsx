@@ -1,14 +1,12 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { Link } from 'react-router-dom';
+import { Card, ListGroup } from 'react-bootstrap'
 
-const CardProduct = ({ _id, image, name, description, price, stock }) => {
+const CardPageProduct = ({ _id, image, name, description, price, stock }) => {
     return (
         <Card>
+            <Card.Header className='m-auto text-center'>{name}</Card.Header>
             <Card.Img variant="top" src={image} />
             <Card.Body>
-                <Card.Title>{name}</Card.Title>
                 <Card.Text>
                     {description}
                 </Card.Text>
@@ -19,14 +17,9 @@ const CardProduct = ({ _id, image, name, description, price, stock }) => {
             </ListGroup>
             <Card.Body>
                 <Card.Link href="#">Añadir al carrito</Card.Link>
-                <Card.Link>
-                    <Link to={`/products/${_id}`}>
-                        Ver más
-                    </Link>
-                </Card.Link>
             </Card.Body>
         </Card>
     )
 }
 
-export default CardProduct
+export default CardPageProduct
