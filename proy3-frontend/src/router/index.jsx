@@ -3,7 +3,7 @@ import LayoutPublic from "../layout/LayoutPublic";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import ProductMenu from "../pages/ProductMenu";
+import ProductMenu, { loaderProduct } from "../pages/ProductMenu";
 import Products, { loaderProducts } from "../pages/Products";
 import Registro from "../pages/Registro";
 
@@ -31,8 +31,9 @@ export const router = createBrowserRouter([
                 loader: loaderProducts,
             },
             {
-                path: "/products/:id",
+                path: "/products/:_id",
                 element: <ProductMenu />,
+                loader: loaderProduct,
             },
             {
                 path: "/error",
