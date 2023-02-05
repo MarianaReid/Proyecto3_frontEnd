@@ -26,10 +26,10 @@ const OffCanvas = () => {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
-                <NavLink to="/">Login</NavLink>
+                <NavLink to="/login">Login</NavLink>
                 </Nav.Link>
                 <Nav.Link>
-                <NavLink to="/">Registrar</NavLink>
+                <NavLink to="/register">Registrar</NavLink>
                 </Nav.Link>
               </Nav>
             </Offcanvas.Body>

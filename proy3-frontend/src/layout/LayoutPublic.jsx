@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import OffCanvas from "../components/Navbar";

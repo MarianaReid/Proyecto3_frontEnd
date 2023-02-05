@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800;900&display=swap');
+*{
+  font-family: "Montserrat", sans-serif;
+}
+
+ .fondo{
+  background-color: rgb(250,250,250);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.logo {
+  text-align: center;
+  width: 50%;
+  height: 300px;
+  margin: auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+   user-select: none;
+}
+
+.letra{
+  color:  rgb(93, 93, 93);
+}
+
+/* Probando otro tipos de botones */
+
+.ov-btn-slide-bottom {
+  background: rgb(247,149,147); /* color de fondo */
+  color: white; /* color de fuente */
+  border: 2px solid rgb(247,149,147); /* tamaño y color de borde */
+  padding: 16px 20px;
+  border-radius: 3px; /* redondear bordes */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+}
+.ov-btn-slide-bottom:hover {
+  color: rgb(247,149,147); /* color de fuente hover */
+}
+.ov-btn-slide-bottom::after {
+  content: "";
+  background: white; /* color de fondo hover */
+  position: absolute;
+  z-index: -1;
+  padding: 16px 20px;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 100%;
+  bottom: -100%;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+.ov-btn-slide-bottom:hover::after {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
