@@ -4,9 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { validarEmail, cantidadCaracteres } from "./helperUsuario";
 import Swal from "sweetalert2";
 import "./Login.css";
+import { setLocalStorage } from "../utils/LocalStorageHelper";
 
-const Login = ({ setUsuarioLogueado }) => {
-  const API_AUTH = process.env.REACT_APP_API_LOGIN;
+// const Login = ({ setUsuarioLogueado }) => {
+  const Login = () => {
+  // const API_AUTH = process.env.REACT_APP_API_LOGIN;
+  const API_AUTH = "https://proyecto3-rolling-code-los-crack.vercel.app/api/login";
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -67,11 +70,15 @@ const Login = ({ setUsuarioLogueado }) => {
       if (respuesta.status === 200) {
         const data = await respuesta.json();
 
-        setUsuarioLogueado(data);
-        localStorage.setItem(
-          process.env.REACT_APP_LOCALSTORAGE,
-          JSON.stringify(data)
-        );
+        // setUsuarioLogueado(data);
+        // localStorage.setItem(
+        //   process.env.REACT_APP_LOCALSTORAGE,
+        //   "userLogged",
+        //   JSON.stringify(data)
+        // );
+
+        setLocalStorage('token', data.token)
+        setLocalStorage('userLogged', data.userData)
 
         navigate(-1);
       } else {
