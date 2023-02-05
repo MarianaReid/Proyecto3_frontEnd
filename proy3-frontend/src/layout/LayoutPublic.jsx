@@ -10,7 +10,7 @@ const LayoutPublic = () => {
         <>
             <Container>
                 {navigation.state === "loading" && (
-                    <div className="alert alert-info my-5">Loading...</div>
+                    <div className="alert alert-info my-5">Cargando...</div>
                 )}
                 <OffCanvas />
 
