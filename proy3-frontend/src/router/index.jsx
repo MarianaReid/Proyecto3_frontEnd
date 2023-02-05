@@ -3,6 +3,7 @@ import LayoutPublic from "../layout/LayoutPublic";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Products from "../pages/Products";
 import Registro from "../pages/Registro";
 
 export const router = createBrowserRouter([
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Registro />,
+            },
+            {
+                path: "/products",
+                element: <Products />,
             },
             {
                 path: "/error",
