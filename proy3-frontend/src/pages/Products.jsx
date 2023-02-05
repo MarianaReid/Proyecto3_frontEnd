@@ -24,12 +24,17 @@ const Products = () => {
 
     <Row>
       <h1 className='m-auto text-center'>Menu</h1>
-      {
+      {products.docs.length > 0 ? 
+      (
         products.docs.map((product) => (
           <div key={product._id} className="m-auto my-4">
             <CardProduct _id={product._id} image={product.image} name={product.name} description={product.description} price={product.price} stock={product.stock} />
           </div>
         ))
+      ):
+      (
+        <h3>No se encuentran resultados</h3>
+      )
       }
     </Row>
     </>
@@ -40,6 +45,14 @@ export default Products
 
 export const loaderProducts = async () => {
   const res = await fetch("https://proyecto3-rolling-code-los-crack.vercel.app/api/products?limit=20&page=1");
+  
+  if(!res.ok)
+  // eslint-disable-next-line no-throw-literal
+  throw {
+      status: res.status,
+      statusText: "No encontrado",
+  };
+  
   const products = await res.json();
 
   return { products };
