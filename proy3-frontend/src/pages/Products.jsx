@@ -1,12 +1,31 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Button, Form, Row } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom'
+import InfiniteScroll from 'react-infinite-scroll-component';
+// import { useLoaderData } from 'react-router-dom'
 import CardProduct from '../components/CardProduct';
 
 const Products = () => {
-  const { products } = useLoaderData();
+  const [dato, setDato] = useState([]);
+  const [page, setPage] = useState(1);
+  const [error, setError] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
-  console.log(products.docs);
+  // const { products } = useLoaderData();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`https://proyecto3-rolling-code-los-crack.vercel.app/api/products?page=${page}`);
+        setHasMore(data.page < data.totalPages);
+        setDato((prevDato) => prevDato.concat(data.docs));
+        setError(false);
+      } catch (error) {
+        setError(true);
+      }
+    }
+    fetchData();
+  }, [page])
 
   return (
     <>
@@ -24,9 +43,17 @@ const Products = () => {
 
     <Row>
       <h1 className='m-auto text-center'>Menu</h1>
-      {products.docs.length > 0 ? 
+
+      <InfiniteScroll
+      dataLength={dato.length}
+      hasMore={hasMore}
+      next={() => setPage(prevPage => prevPage + 1)}
+      loader={<h4>Cargando...</h4>}
+      >
+      {
+      dato.length > 0 ? 
       (
-        products.docs.map((product) => (
+        dato.map((product) => (
           <div key={product._id} className="m-auto my-4">
             <CardProduct _id={product._id} image={product.image} name={product.name} description={product.description} price={product.price} stock={product.stock} />
           </div>
@@ -36,6 +63,8 @@ const Products = () => {
         <h3>No se encuentran resultados</h3>
       )
       }
+      </InfiniteScroll>
+
     </Row>
     </>
   )
@@ -43,17 +72,17 @@ const Products = () => {
 
 export default Products
 
-export const loaderProducts = async () => {
-  const res = await fetch("https://proyecto3-rolling-code-los-crack.vercel.app/api/products?limit=20&page=1");
+// export const loaderProducts = async () => {
+//   const res = await fetch(`https://proyecto3-rolling-code-los-crack.vercel.app/api/products`);
   
-  if(!res.ok)
-  // eslint-disable-next-line no-throw-literal
-  throw {
-      status: res.status,
-      statusText: "No encontrado",
-  };
+//   if(!res.ok)
+//   // eslint-disable-next-line no-throw-literal
+//   throw {
+//       status: res.status,
+//       statusText: "No encontrado",
+//   };
   
-  const products = await res.json();
+//   const products = await res.json();
 
-  return { products };
-}
+//   return { products };
+// }

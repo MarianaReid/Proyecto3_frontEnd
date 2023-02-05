@@ -3,7 +3,7 @@ import { Card, ListGroup } from 'react-bootstrap'
 
 const CardPageProduct = ({ _id, image, name, description, price, stock }) => {
     return (
-        <Card>
+        <Card className='m-auto my-3'>
             <Card.Header className='m-auto text-center'>{name}</Card.Header>
             <Card.Img variant="top" src={image} />
             <Card.Body>
