@@ -4,7 +4,7 @@ import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ProductMenu from "../pages/ProductMenu";
-import Products from "../pages/Products";
+import Products, { loaderProducts } from "../pages/Products";
 import Registro from "../pages/Registro";
 
 export const router = createBrowserRouter([
@@ -28,6 +28,7 @@ export const router = createBrowserRouter([
             {
                 path: "/products",
                 element: <Products />,
+                loader: loaderProducts,
             },
             {
                 path: "/products/:id",
