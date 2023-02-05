@@ -4,6 +4,7 @@ import "./Registro.css"
 import { cantidadCaracteres, validarclave, validarEmail, validarNombre } from './helperUsuario';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { setLocalStorage } from '../utils/LocalStorageHelper';
 
 
 const Registro = ({setUsuarioLogueado}) => {
@@ -18,82 +19,85 @@ const Registro = ({setUsuarioLogueado}) => {
     const [msjErrorNombre, setMsjErrorNombre] = useState(false)
 
     // const URL = process.env.REACT_APP_API_USUARIOS;
+    const URL = "https://proyecto3-rolling-code-los-crack.vercel.app/api";
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    //     if (validarNombre(nombre)) setMsjErrorNombre(false);
-    //     else setMsjErrorNombre(true);
+        if (validarNombre(nombre)) setMsjErrorNombre(false);
+        else setMsjErrorNombre(true);
 
-    //     if (validarclave(clave)) setmsjErrorclave(false);
-    //     else  setmsjErrorclave(true);
+        if (validarclave(clave)) setmsjErrorclave(false);
+        else  setmsjErrorclave(true);
 
-    //     if (cantidadCaracteres(nombre, 8 , 40))  setmsjErrorusuario(false);
-    //     else setmsjErrorusuario(true);
+        if (cantidadCaracteres(nombre, 8 , 40))  setmsjErrorusuario(false);
+        else setmsjErrorusuario(true);
 
-    //     if (validarEmail(email)) setmsjErrormail(false)
-    //     else setmsjErrormail(true)
+        if (validarEmail(email)) setmsjErrormail(false)
+        else setmsjErrormail(true)
 
-    //         if (
-    //             cantidadCaracteres(nombre, 8 , 40) &&
-    //             validarclave(clave) &&
-    //             validarEmail(email) &&
-    //             validarNombre(nombre)
-    //         ) {
-    //             setMsjError(false);
-    //             const nuevoUsario = {
-    //                 nombre,
-    //                 email,
-    //                 password: clave,
-    //                 estado: true,
-    //                 perfil: false,
-    //             };
+            if (
+                cantidadCaracteres(nombre, 8 , 40) &&
+                validarclave(clave) &&
+                validarEmail(email) &&
+                validarNombre(nombre)
+            ) {
+                setMsjError(false);
+                const nuevoUsario = {
+                    name: nombre,
+                    email,
+                    password: clave,
+                    // estado: true,
+                    // perfil: false,
+                };
 
-    //             try {
-    //                 const parametrosPeticion = {
-    //                     method: 'POST',
-    //                     headers: {
-    //                         'Content-Type': 'application/json',
-    //                     },
-    //                     body: JSON.stringify(nuevoUsario),
-    //                 };
-    //                 const respuesta = await fetch(
-    //                     URL + '/nuevo',
-    //                     parametrosPeticion
-    //                 );
-    //                 if (respuesta.status === 201) {
-    //                     const data = await respuesta.json();
+                try {
+                    const parametrosPeticion = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(nuevoUsario),
+                    };
+                    const respuesta = await fetch(
+                        URL + '/createUser',
+                        parametrosPeticion
+                    );
+                    if (respuesta.status === 201) {
+                        const data = await respuesta.json();
 
-    //                     localStorage.setItem(
-    //                         process.env.REACT_APP_LOCALSTORAGE,
-    //                         JSON.stringify(data)
-    //                     );
-    //                     setUsuarioLogueado(data);
+                        // localStorage.setItem(
+                        //     process.env.REACT_APP_LOCALSTORAGE,
+                        //     JSON.stringify(data)
+                        // );
+                        // setUsuarioLogueado(data);
+                        setLocalStorage('token', data.token)
+                        setLocalStorage('userLogged', data.userData)
 
-    //                     Swal.fire({
-    //                         title: 'Registro exitoso',
-    //                         showDenyButton: false,
-    //                         showCancelButton: false,
-    //                         confirmButtonText: 'Ok',
-    //                     }).then((result) => {
-    //                         navigate(-2);
-    //                     });
-    //                 } else {
-    //                     setmsjErroremailRepetido(true)
-    //                 }
-    //             } catch (error) {
-    //                 Swal.fire(
-    //                     'Se produjo un error',
-    //                     'No se pudo realizar su registro de usuario, por favor intente nuevamente en unos minutos',
-    //                     'error'
-    //                 );
-    //             }
-    //         } else {
-    //             setMsjError(true);
-    //         }
-    // };
+                        Swal.fire({
+                            title: 'Registro exitoso',
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: 'Ok',
+                        }).then((result) => {
+                            navigate(-2);
+                        });
+                    } else {
+                        setmsjErroremailRepetido(true)
+                    }
+                } catch (error) {
+                    Swal.fire(
+                        'Se produjo un error',
+                        'No se pudo realizar su registro de usuario, por favor intente nuevamente en unos minutos',
+                        'error'
+                    );
+                }
+            } else {
+                setMsjError(true);
+            }
+    };
 
     return (
         <div className="imagen justify-content-center  px-20  py-20 ">
@@ -105,7 +109,7 @@ const Registro = ({setUsuarioLogueado}) => {
                 </div>
                 <Form
                     className="container formRegistro"
-                    // onSubmit={handleSubmit}
+                    onSubmit={handleSubmit}
                 >
                     <div className="row py-4">
                         <div className="col-12 ">

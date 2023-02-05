@@ -7,7 +7,7 @@ import "./Login.css";
 import { setLocalStorage } from "../utils/LocalStorageHelper";
 
 // const Login = ({ setUsuarioLogueado }) => {
-  const Login = () => {
+const Login = () => {
   // const API_AUTH = process.env.REACT_APP_API_LOGIN;
   const API_AUTH = "https://proyecto3-rolling-code-los-crack.vercel.app/api/login";
 
