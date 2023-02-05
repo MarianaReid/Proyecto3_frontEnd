@@ -5,6 +5,7 @@ import postre from '../components/img/postre.jpg'
 import bebidas from '../components/img/bebidas.jpg'
 import { Row, Col, Button } from 'react-bootstrap';
 import Opciones from "../components/Carrusel"
+import { Link } from "react-router-dom"
 
 
 const home = [
@@ -50,12 +51,14 @@ const Home = () => {
           ))}
       </Row>
 
-      <Row className="d-grid m-auto my-3">
-        <Button variant="outline-dark" size="lg">
-          <i className="fa-sharp fa-solid fa-magnifying-glass">
-            <span className="mx-3">Buscador de productos</span>
-          </i>
-        </Button>
+      <Row className="m-auto my-3">
+        <Link to="/products" className="d-grid">
+          <Button variant="outline-dark" size="lg">
+            <i className="fa-sharp fa-solid fa-magnifying-glass">
+              <span className="mx-3">Buscador de productos</span>
+            </i>
+          </Button>
+        </Link>
       </Row>
     </>
   )
