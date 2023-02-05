@@ -9,7 +9,7 @@ const Menu = ({ id, imageSource, title }) => {
             <Card.Img variant="top" src={imageSource} fluid className='m-2' />
             <Card.ImgOverlay>
                 <Card.Body>
-                    <Link to={`/category/${id}`}>
+                    <Link to={`/products/category/${id}`}>
                         <Card.Title className='text-center text-uppercase fw-semibold text-warning bg-dark bg-opacity-75 m-auto'>{title}</Card.Title>
                     </Link>
                 </Card.Body>
