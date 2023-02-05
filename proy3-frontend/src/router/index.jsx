@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import LayoutPublic from "../layout/LayoutPublic";
 import Error from "../pages/Error";
-import Home from "../pages/Home";
+import Home, { loaderCategories } from "../pages/Home";
 import Login from "../pages/Login";
 import ProductMenu, { loaderProduct } from "../pages/ProductMenu";
 import Products, { loaderProducts } from "../pages/Products";
@@ -16,6 +16,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+                loader: loaderCategories,
             },
             {
                 path: "/login",

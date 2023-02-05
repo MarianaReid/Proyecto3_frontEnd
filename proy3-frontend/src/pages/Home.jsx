@@ -1,37 +1,13 @@
 import Menu from "../components/Card"
-import entrada from '../components/img/entrada.jpg'
-import platoprincipal from '../components/img/platoprincipal.jpg'
-import postre from '../components/img/postre.jpg'
-import bebidas from '../components/img/bebidas.jpg'
 import { Row, Col, Button } from 'react-bootstrap';
 import Opciones from "../components/Carrusel"
-import { Link } from "react-router-dom"
-
-
-const home = [
-  {
-    id: 1,
-    title: 'Entrada',
-    image: entrada
-  },
-  {
-    id: 2,
-    title: 'Plato Principal',
-    image: platoprincipal
-  },
-  {
-    id: 3,
-    title: 'Postre',
-    image: postre
-  },
-  {
-    id: 4,
-    title: 'Bebidas',
-    image: bebidas
-  },
-]
+import { Link, useLoaderData } from "react-router-dom"
 
 const Home = () => {
+
+  const { categories } = useLoaderData();
+
+  console.log(categories.docs);
 
   return (
     <>
@@ -44,9 +20,9 @@ const Home = () => {
       </Row>
       <Row>
         {
-          home.map((home) => (
-            <Col key={home.id} xs={6}>
-              <Menu title={home.title} imageSource={home.image} />
+          categories.docs.map((cat) => (
+            <Col key={cat._id} xs={6}>
+              <Menu id={cat._id} title={cat.name} imageSource={cat.image} />
             </Col>
           ))}
       </Row>
@@ -66,3 +42,17 @@ const Home = () => {
 
 export default Home
 
+export const loaderCategories = async () => {
+  const res = await fetch("https://proyecto3-rolling-code-los-crack.vercel.app/api/categories?limit=20&page=1");
+  
+  if(!res.ok)
+  // eslint-disable-next-line no-throw-literal
+  throw {
+      status: res.status,
+      statusText: "No encontrado",
+  };
+  
+  const categories = await res.json();
+
+  return { categories };
+}
