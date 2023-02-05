@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
                 loader: loaderProducts,
             },
             {
-                path: "/products/:_id",
+                path: "/products/:id",
                 element: <ProductMenu />,
                 loader: loaderProduct,
             },
