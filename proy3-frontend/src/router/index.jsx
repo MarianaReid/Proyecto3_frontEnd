@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import ProductMenu, { loaderProduct } from "../pages/ProductMenu";
 import Products from "../pages/Products";
 import Registro from "../pages/Registro";
+import Welcom, { loaderWelcom } from "../pages/Welcom";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,11 @@ export const router = createBrowserRouter([
                         loader: loaderCategory,
                     },
                 ]
+            },
+            {
+                path: "/api/user/active-account/:id",
+                element: <Welcom />,
+                loader: loaderWelcom,
             },
             {
                 path: "/error",
