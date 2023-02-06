@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import CardProductos from "../componentes/CardProductos";
-import Navbar from '../componentes/Navbar'
-
 
 const Productos = ({ token, usuario, setToken }) => {
     const [productos, setProductos] = useState([]);
@@ -17,7 +15,7 @@ const Productos = ({ token, usuario, setToken }) => {
 
     return (
         <>
-            <Navbar token={token} usuario={usuario} setToken={setToken} />
+            {/* <Navbar token={token} usuario={usuario} setToken={setToken} /> */}
             <div className="tituloProd">
                 <Container>
                     <Row>
@@ -38,3 +36,4 @@ const Productos = ({ token, usuario, setToken }) => {
 }
 
 export default Productos
+

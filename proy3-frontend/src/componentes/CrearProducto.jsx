@@ -1,13 +1,15 @@
-import FormularioProducto from "../paginas/FormularioProducto";
+import FormProducto from "../paginas/FormProducto"
 
-const  CrearProducto = () => {
+
+const CrearProducto = ({ token }) => {
     return (
-        <div className="container mx-5">
+        <div><div className="container mx-5 mb-5">
             <h1>Alta de Productos</h1>
-            <FormularioProducto  />
+            <FormProducto />
+        </div>
 
         </div>
-    );
+    )
 }
 
 export default CrearProducto

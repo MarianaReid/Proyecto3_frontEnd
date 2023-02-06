@@ -1,52 +1,66 @@
-import { useState } from "react"
-import { Button, Card, Modal } from "react-bootstrap";
+import { useState } from "react";
+import { Card, Button, Modal } from "react-bootstrap";
 
-
-const CardProductos = ({ producto }) => {
+const CardProductos = (product) => {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    <div>
-        <Card className="m-3" style={{ width: '18rem' }}>
-            <Card.Title className="m-2 text-center">{producto.nombre}</Card.Title>
-            <Card.Img src={producto.imagen} className="limit-height" />
-            <Card.Body>
-                <div>
-                    <Button variant="outline-secondary" className="w-100" disable>{producto.precio}</Button>
-                </div>
-                <div>
-                    <Button variant="success" className="w-50">show</Button>
-                    <Button variant="primary" className="w-50">Comprar</Button>
-                </div>
+    return (
+        <div>
+            <div>
+                <Card className="m-3" style={{ width: "18rem", maxHeight: "27rem" }}>
+                    <Card.Title className="m-2 text-center">{product.name}</Card.Title>
+                    <Card.Img src={product.image} className="limit-height" />
+                    <Card.Body className="d-flex flex-column">
+                        <div className="mb-1">
+                            <Button variant="outline-secondary" className="w-100" disabled> ${product.price}</Button>
+                        </div>
+                        <div className="">
+                            <Button variant="info" className="w-50">Comprar</Button>
+                            <Button variant="secondary" className="w-50" onClick={handleShow}>
+                                Mostrar
+                            </Button>
+                        </div>
+                    </Card.Body>
+                </Card>
 
-            </Card.Body>
-        </Card>
-        <Modal
-            show={show}
-            onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>{producto.name}</Modal.Title>
-            </Modal.Header>
-            <Card.Img src={producto.imagen} />
-            <Modal.Body className="d-flex flex-column">
-                <div className="border-bottom border-top mb-3 p4">
-                    <strong>Categoría:</strong> {producto.categoria}
-                </div>
-                <div className="border-bottom border-top mb-3 p4">
-                    <strong>Precio:</strong> {producto.precio}
-                </div>
-                <div className="border-bottom border-top p4 text-justify">
-                    <strong>Descripción:</strong> {producto.descripcion}
-                </div>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}> Comprar </Button>
-                <Button variant="secondary" onClick={handleClose}> Cerrar </Button>
-            </Modal.Footer>
-        </Modal>
-    </div>
+                <Modal
+                    show={show}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>{product.name}</Modal.Title>
+                    </Modal.Header>
+                    <Card.Img src={product.image} />
+                    <Modal.Body className="d-flex flex-column">
+                        <div className="border-bottom border-top mb-3 p-4">
+                            <strong>Nombre:</strong> {product.brand}
+                        </div>
+
+                        <div className="border-bottom border-top mb-3 p-4">
+                            <strong>Categoría:</strong> {product.category}
+                        </div>
+
+                        <div className="border-bottom border-top mb-3 p-4">
+                            <strong>Precio:</strong> {product.price}
+                        </div>
+
+                        <div className="border-bottom border-top p-4 text-justify">
+                            <strong>Descripción:</strong> {product.description}
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="info">Comprar</Button>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cerrar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
+        </div>
+    )
 }
-
 
 export default CardProductos
