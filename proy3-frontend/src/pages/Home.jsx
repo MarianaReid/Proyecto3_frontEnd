@@ -16,7 +16,7 @@ const Home = () => {
       </Row>
 
       <Row className="text-center">
-        <h2>Categorias</h2>
+        <h2>Categorías</h2>
       </Row>
       <Row>
         {

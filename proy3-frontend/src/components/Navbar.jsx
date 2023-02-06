@@ -5,15 +5,30 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink } from 'react-router-dom';
 import { getLocalStorage } from '../utils/LocalStorageHelper';
+import "./Navbar.css";
+
 
 const OffCanvas = () => {
-  
-  //Ver lo de consultar el usuario logeado
+  //Ver lo de consultar el usuario logueado
   const [isLogged, setIsLogged] = useState({});
 
   useEffect(() => {
     setIsLogged(getLocalStorage("userLogged"));
   }, []);
+
+  // const logout = () => {
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('user');
+    //setContextState({
+    //  type: ActionTypes.SET_USER_LOGIN,
+     // value: false,
+    //});
+    //setContextState({
+    //  type: ActionTypes.SET_USER_DATA,
+    //  value: {},
+    //});
+  // };
+
 
   return (
     <>
@@ -48,7 +63,8 @@ const OffCanvas = () => {
                     <Nav.Link>
                       <div>{isLogged.name}</div>
                     </Nav.Link><Nav.Link>
-                      <NavLink to="/">Cerrar sesion</NavLink>
+                      <NavLink to="/" >Cerrar sesión
+                    </NavLink>
                     </Nav.Link>
                   </>
                 )
