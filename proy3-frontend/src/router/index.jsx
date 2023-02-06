@@ -4,9 +4,9 @@ import LayoutPublic from "../layout/LayoutPublic";
 import Category, { loaderCategory } from "../pages/Category";
 import Error from "../pages/Error";
 import Home, { loaderCategories } from "../pages/Home";
+import LandingPageProducts from "../pages/LandingPageProducts";
 import Login from "../pages/Login";
 import ProductMenu, { loaderProduct } from "../pages/ProductMenu";
-import Products from "../pages/Products";
 import Registro from "../pages/Registro";
 import Welcom, { loaderWelcom } from "../pages/Welcom";
 
@@ -35,8 +35,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "/products",
-                        element: <Products />,
-                        // loader: loaderProducts,
+                        element: <LandingPageProducts />,
                     },
                     {
                         path: "/products/:id",
