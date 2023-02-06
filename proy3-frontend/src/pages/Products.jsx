@@ -1,22 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Button, Form, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
-// import { useLoaderData } from 'react-router-dom'
 import CardProduct from '../components/CardProduct';
 
-const Products = () => {
+const Products = ({ search }) => {
   const [dato, setDato] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  // const { products } = useLoaderData();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`https://proyecto3-rolling-code-los-crack.vercel.app/api/products?page=${page}`);
+        const searchUrl = search
+        ? `https://proyecto3-rolling-code-los-crack.vercel.app/api/products?page=${page}&search=${search}`
+        : `https://proyecto3-rolling-code-los-crack.vercel.app/api/products?page=${page}`;
+        const { data } = await axios.get(searchUrl);
         setHasMore(data.page < data.totalPages);
         setDato((prevDato) => prevDato.concat(data.docs));
         setError(false);
@@ -25,21 +25,10 @@ const Products = () => {
       }
     }
     fetchData();
-  }, [page])
+  }, [search, page])
 
   return (
     <>
-    <Row className='m-auto my-3'>
-      <Form className="d-flex">
-        <Form.Control
-          type="search"
-          placeholder="Busca tu menu..."
-          className="me-2"
-          aria-label="Search"
-        />
-        <Button variant="outline-success">Buscar</Button>
-      </Form>
-    </Row>
 
     <Row>
       <h1 className='m-auto text-center'>Menu</h1>
@@ -71,18 +60,3 @@ const Products = () => {
 }
 
 export default Products
-
-// export const loaderProducts = async () => {
-//   const res = await fetch(`https://proyecto3-rolling-code-los-crack.vercel.app/api/products`);
-  
-//   if(!res.ok)
-//   // eslint-disable-next-line no-throw-literal
-//   throw {
-//       status: res.status,
-//       statusText: "No encontrado",
-//   };
-  
-//   const products = await res.json();
-
-//   return { products };
-// }
