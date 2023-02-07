@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import LayoutProducts from "../layout/LayoutProducts";
+import LayoutProtected from "../layout/LayoutProtected";
 import LayoutPublic from "../layout/LayoutPublic";
 import Admin from "../pages/Admin";
 import Category, { loaderCategory } from "../pages/Category";
@@ -58,11 +59,18 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/admin",
-                element: <Admin />,
-            },
-            {
-                path: "/admin/edit/product/:id",
-                element: <ProductEdit />,
+                element: <LayoutProtected />,
+                errorElement: <Error />,
+                children: [
+                    {
+                        index: true,
+                        element: <Admin />,
+                    },
+                    {
+                        path: "/admin/edit/product/:id",
+                        element: <ProductEdit />,
+                    },
+                ]
             },
             {
                 path: "/error",
