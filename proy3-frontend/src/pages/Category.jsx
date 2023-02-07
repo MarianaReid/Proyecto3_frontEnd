@@ -6,10 +6,6 @@ import CardProduct from '../components/CardProduct';
 const Category = () => {
   const { category } = useLoaderData();
 
-  console.log("CATEGORY:", category);
-
-  console.log("CATEGORY/PRODUCTS:", category.products);
-
   return (
     <>
       <Row className='text-center mb-4'>

@@ -98,7 +98,7 @@ const Login = () => {
   };
 
   return (
-    <section className="container-fluid color-texto">
+    <section className="container-fluid color-texto pb-3">
       <div className="row rowLadrillo sectionLogin">
         <article className="col-12 col-md-6 bg-login px-5">
           <h3 className="mt-5">Ingrese su email y contraseña</h3>
