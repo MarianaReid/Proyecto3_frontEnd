@@ -17,7 +17,7 @@ const OffCanvas = () => {
 
   return (
     <>
-      <Navbar bg="light" expand={false} className="mb-3">
+      <Navbar bg="dark" expand={false} className="mb-3">
         <Container fluid>
           <Navbar.Brand>
             <NavLink to="/">Sabores Latinos</NavLink>
