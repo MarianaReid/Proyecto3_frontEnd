@@ -9,7 +9,7 @@ const Footer = () => {
         <div className='me-5 d-none d-lg-block'>
           <span>Conectate con Nosotros a Nuestras Redes Sociales:</span>
         </div>
-        <div>
+        <div>          
           <a href='https://es-la.facebook.com/' target={'_blank'} className='me-4 text-reset' rel="noreferrer">
             <MDBIcon fab icon="facebook-f" />
           </a>
@@ -29,25 +29,7 @@ const Footer = () => {
                 <MDBIcon className="me-3" />
               </h6>
               <Image src='https://i.postimg.cc/prr2V8VD/Logo-removebg-preview-1.png' fluid />
-            </MDBCol>
-            <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>INGRESA</h6>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Home
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Login
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Registrate
-                </a>
-              </p>
-            </MDBCol>
+            </MDBCol>          
             <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Contacto</h6>
               <p>

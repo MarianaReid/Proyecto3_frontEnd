@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 
+
 const CardProduct = ({ _id, image, name, description, price, stock }) => {
     return (
         <Card>
