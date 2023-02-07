@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Form, Modal, Button, Table, Row, Card } from "react-bootstrap";
+import { Button, Card, Modal, Row, Table } from "react-bootstrap";
+import { Form } from "react-router-dom";
 
-const AdminListaProductos = ({ token, product }) => {
+const AdminProductos = ({ token, product }) => {
     const [editProduct, setEditProduct] = useState({})
     const [products, setProducts] = useState([]);
     const [show, setShow] = useState(false);
@@ -130,19 +131,6 @@ const AdminListaProductos = ({ token, product }) => {
                             </Form.Group>
 
                             <Form.Group controlId="validationCustom02">
-                                <Form.Label>Marca</Form.Label>
-                                <Form.Control
-                                    name="brand"
-                                    value={editProduct.brand}
-                                    onChange={(e) => handleChange(e)}
-                                    required
-                                    type="text"
-                                    placeholder="Marca"
-                                />
-                                <Form.Control.Feedback>¡Luce bien!</Form.Control.Feedback>
-                            </Form.Group>
-
-                            <Form.Group controlId="validationCustom02">
                                 <Form.Label>Categoría</Form.Label>
                                 <Form.Control
                                     name="category"
@@ -194,6 +182,94 @@ const AdminListaProductos = ({ token, product }) => {
                     </Modal.Footer>
                 </Modal>
 
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Editar producto</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form
+                            noValidate
+                            validated={validated}
+                            onSubmit={handleSubmit}
+                        >
+                            <Form.Group controlId="validationCustom02">
+                                <Form.Label>Nombre</Form.Label>
+                                <Form.Control
+                                    name="name"
+                                    value={deleteProduct.name}
+                                    onChange={(e) => handleChange(e)}
+                                    required
+                                    type="text"
+                                    placeholder="Nombre del producto"
+                                />
+                                <Form.Control.Feedback>¡Luce bien!</Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group controlId="validationCustom02">
+                                <Form.Label>Imagen</Form.Label>
+                                <Form.Control
+                                    name="image"
+                                    value={deleteProduct.image}
+                                    onChange={(e) => handleChange(e)}
+                                    required
+                                    type="text"
+                                    placeholder="http://imagen.jpg"
+                                />
+                                <Form.Control.Feedback>¡Luce bien!</Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group controlId="validationCustom02">
+                                <Form.Label>Categoría</Form.Label>
+                                <Form.Control
+                                    name="category"
+                                    value={deleteProduct.category}
+                                    onChange={(e) => handleChange(e)}
+                                    required
+                                    type="text"
+                                    placeholder="Categoría"
+                                />
+                                <Form.Control.Feedback>¡Luce bien!</Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group controlId="validationCustom02">
+                                <Form.Label>Precio</Form.Label>
+                                <Form.Control
+                                    name="price"
+                                    value={deleteProduct.price}
+                                    onChange={(e) => handleChange(e)}
+                                    required
+                                    type="number"
+                                    placeholder="Precio"
+                                />
+                                <Form.Control.Feedback>¡Luce bien!</Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group controlId="validationCustom02">
+                                <Form.Label>Descripción</Form.Label>
+                                <Form.Control
+                                    name="description"
+                                    value={deleteProduct.description}
+                                    onChange={(e) => handleChange(e)}
+                                    required
+                                    type="text"
+                                    placeholder="Descripción"
+                                />
+                                <Form.Control.Feedback>¡Luce bien!</Form.Control.Feedback>
+                            </Form.Group>
+                            <Row>
+                                <Button type="submit" className="mx-auto btn-info">
+                                    Borrar producto
+                                </Button>
+                            </Row>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cerrar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <Modal
                     show={showProduct}
                     onHide={handleCloseProduct}
@@ -201,24 +277,24 @@ const AdminListaProductos = ({ token, product }) => {
                     keyboard={false}
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>{editProduct.name}</Modal.Title>
+                        <Modal.Title>{deleteProduct.name}</Modal.Title>
                     </Modal.Header>
-                    <Card.Img src={editProduct.image} />
+                    <Card.Img src={deleteProduct.image} />
                     <Modal.Body className="d-flex flex-column">
                         <div className="border-bottom border-top mb-3 p-4">
-                            <strong>Marca:</strong> {editProduct.brand}
+                            <strong>Nombre:</strong> {deleteProduct.brand}
                         </div>
 
                         <div className="border-bottom border-top mb-3 p-4">
-                            <strong>Categoría:</strong> {editProduct.category}
+                            <strong>Categoría:</strong> {deleteProduct.category}
                         </div>
 
                         <div className="border-bottom border-top mb-3 p-4">
-                            <strong>Precio:</strong> {editProduct.price}
+                            <strong>Precio:</strong> {deleteProduct.price}
                         </div>
 
                         <div className="border-bottom border-top p-4 text-justify">
-                            <strong>Descripción:</strong> {editProduct.description}
+                            <strong>Descripción:</strong> {deleteProduct.description}
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
@@ -232,4 +308,4 @@ const AdminListaProductos = ({ token, product }) => {
     )
 }
 
-export default AdminListaProductos
+export default AdminProductos

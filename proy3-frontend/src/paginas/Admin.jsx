@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import AdminNavbar from "../componentes/AdminNavbar";
 import AdminUsuarios from '../componentes/AdminUsuarios';
 import CrearProducto from '../componentes/CrearProducto';
-import AdminListaProductos from '../componentes/AdminListaProductos';
+import AdminListaProductos from '../componentes/AdminProductos';
 
 
 
