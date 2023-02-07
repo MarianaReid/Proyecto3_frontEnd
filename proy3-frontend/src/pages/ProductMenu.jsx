@@ -7,13 +7,11 @@ const ProductMenu = () => {
 
   const { product } = useLoaderData();
 
-  console.log(product);
-
   return (
     <>
       <Row>
         <Link to="/products">
-        <Button>Volver</Button>
+        <Button className='btn-block'>Volver</Button>
         </Link>
         <CardPageProduct _id={product._id} image={product.image} name={product.name} description={product.description} price={product.price} stock={product.stock} />
       </Row>

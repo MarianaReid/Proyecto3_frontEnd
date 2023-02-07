@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const CardPageProduct = ({ _id, image, name, description, price, stock }) => {
     return (
@@ -16,7 +17,11 @@ const CardPageProduct = ({ _id, image, name, description, price, stock }) => {
                 <ListGroup.Item>Stock {stock}</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-                <Card.Link href="#">Añadir al carrito</Card.Link>
+                <Card.Link>
+                    <Link to={"/building"}>
+                        Añadir al carrito
+                    </Link>
+                </Card.Link>
             </Card.Body>
         </Card>
     )
