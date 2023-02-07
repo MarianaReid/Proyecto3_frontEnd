@@ -3,6 +3,7 @@ import LayoutProducts from "../layout/LayoutProducts";
 import LayoutProtected from "../layout/LayoutProtected";
 import LayoutPublic from "../layout/LayoutPublic";
 import Admin from "../pages/Admin";
+import Building from "../pages/Building";
 import Category, { loaderCategory } from "../pages/Category";
 import Error from "../pages/Error";
 import Home, { loaderCategories } from "../pages/Home";
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
             {
                 path: "/error",
                 element: <Error />,
+            },
+            {
+                path: "/building",
+                element: <Building />,
             },
         ],
     },

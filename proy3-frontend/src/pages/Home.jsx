@@ -7,8 +7,6 @@ const Home = () => {
 
   const { categories } = useLoaderData();
 
-  console.log(categories.docs);
-
   return (
     <>
       <Row>
