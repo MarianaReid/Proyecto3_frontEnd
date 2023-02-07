@@ -1,33 +1,13 @@
-import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink } from 'react-router-dom';
-import { getLocalStorage } from '../utils/LocalStorageHelper';
+import { removeLocalStorage } from '../utils/LocalStorageHelper';
 import "./Navbar.css";
 
 
-const OffCanvas = () => {
-  //Ver lo de consultar el usuario logueado
-  const [isLogged, setIsLogged] = useState({});
-
-  useEffect(() => {
-    setIsLogged(getLocalStorage("userLogged"));
-  }, []);
-
-  // const logout = () => {
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('user');
-    //setContextState({
-    //  type: ActionTypes.SET_USER_LOGIN,
-     // value: false,
-    //});
-    //setContextState({
-    //  type: ActionTypes.SET_USER_DATA,
-    //  value: {},
-    //});
-  // };
+const OffCanvas = ({ UserData }) => {
 
 
   return (
@@ -50,7 +30,7 @@ const OffCanvas = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                {!isLogged ? (
+                {!UserData ? (
                   <>
                     <Nav.Link>
                       <NavLink to="/login">Login</NavLink>
@@ -61,10 +41,21 @@ const OffCanvas = () => {
                 ) : (
                   <>
                     <Nav.Link>
-                      <div>{isLogged.name}</div>
-                    </Nav.Link><Nav.Link>
-                      <NavLink to="/" >Cerrar sesión
-                    </NavLink>
+                      <div>{UserData.name}</div>
+                    </Nav.Link>
+                    <Nav.Link>
+                      {UserData.role === "ADMIN" &&                      
+                      <NavLink to="/admin">
+                        Panel Administrador
+                      </NavLink>
+                      }
+                    </Nav.Link>
+                    <Nav.Link>
+                      <NavLink to="/" onClick={() => {
+                        removeLocalStorage("userLogged");
+                        removeLocalStorage("token");
+                      }}>Cerrar sesión
+                      </NavLink>
                     </Nav.Link>
                   </>
                 )
