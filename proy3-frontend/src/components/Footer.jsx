@@ -22,34 +22,16 @@ const Footer = () => {
         </div>
       </section>
       <section className=''>
-        <MDBContainer className='text-center text-md-start mt-5'>
-          <MDBRow className='mt-3'>
-            <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>
+        <MDBContainer className='text-center text-md-start'>
+          <MDBRow className=''>
+            <MDBCol md="3" lg="4" xl="3" className='mx-auto'>
+              <h6 className='text-uppercase fw-bold'>
                 <MDBIcon className="me-3" />
               </h6>
               <Image src='https://i.postimg.cc/prr2V8VD/Logo-removebg-preview-1.png' fluid />
             </MDBCol>
-            <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>INGRESA</h6>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Home
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Login
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Registrate
-                </a>
-              </p>
-            </MDBCol>
-            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>Contacto</h6>
+            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0'>
+              <h6 className='text-uppercase fw-bold'>Contacto</h6>
               <p>
                 <MDBIcon icon="home" className="me-2" />
                 Gral. Paz 700
@@ -65,12 +47,11 @@ const Footer = () => {
           </MDBRow>
         </MDBContainer>
       </section>
-
-      <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+      <div className='text-center p-2' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
         © 2023 Copyright:
-        <a className='text-reset fw-bold' href='#/'>
+        <div className='text-reset fw-bold'>
           saboreslatinos.com
-        </a>
+        </div>
       </div>
     </MDBFooter>
   );
