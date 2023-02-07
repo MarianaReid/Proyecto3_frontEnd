@@ -12,23 +12,23 @@ function App() {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [user, setUser] = useState({});
 
-    // useEffect(() => {
-    //     if (token) {
-    //         getApi();
-    //     }
-    // }, [token]);
+    useEffect(() => {
+        if (token) {
+            getApi();
+        }
+    }, [token]);
 
-    // const getApi = async () => {
-    //     try {
-    //         const headers = { 'p-token': token };
-    //         const { data } = await axios.get('usuarios/usuarioLogueado', {
-    //             headers,
-    //         });
-    //         setUser(data);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+    const getApi = async () => {
+        try {
+            const headers = { 'p-token': token };
+            const { data } = await axios.get('usuarios/usuarioLogueado', {
+                headers,
+            });
+            setUser(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <div>
@@ -41,5 +41,3 @@ function App() {
         </div>
     );
 }
-
-export default App;
