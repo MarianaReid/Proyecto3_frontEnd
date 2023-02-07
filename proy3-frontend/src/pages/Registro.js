@@ -100,7 +100,7 @@ const Registro = ({setUsuarioLogueado}) => {
     };
 
     return (
-        <div className="imagen justify-content-center  px-20  py-20 ">
+        <div className="imagen container pb-5 justify-content-center  px-20  py-30 ">
             <Card className="rounded bg-form px-0">
                 <div className="bg-dark rounded p-4">
                     <h1 className="title-typography text-center text-light">
