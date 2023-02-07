@@ -3,21 +3,21 @@ import Carousel from 'react-bootstrap/Carousel';
 const carouselOp = [
     {
         id: 1,
-        imageOp: "https://http2.mlstatic.com/D_NQ_NP_623300-MLA26451197581_112017-O.jpg",
+        imageOp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqRSTx0BPPyOCNWO9Mhpo5XAITUAAkhBqxKA&usqp=CAU",
         titleOp: "MENU 1",
-        descriptionOp: "Soy un menu"
+        descriptionOp: "Parrillada Argentina"
     },
     {
         id: 2,
-        imageOp: "https://img.freepik.com/fotos-premium/plato-verduras-carne-asada_538646-4881.jpg",
+        imageOp: "https://www.buffetcrepeecia.com.br/wp-content/uploads/2017/02/feijoada-paio-275x183.jpg",
         titleOp: "MENU 2",
-        descriptionOp: "Soy un menu"
+        descriptionOp: "Rica Feijoada Brasileña"
     },
     {
         id: 3,
-        imageOp: "https://lavicenta.com.mx/wp-content/uploads/2020/04/carne-asada-820x450.jpg",
+        imageOp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS5hW2w-p78NyBaSTv7YlXezImcGRARjQLvw&usqp=CAU",
         titleOp: "MENU 3",
-        descriptionOp: 'Soy un menu'
+        descriptionOp: 'Imperdibles Tacos Mexicanos'
     }
 ]
 
