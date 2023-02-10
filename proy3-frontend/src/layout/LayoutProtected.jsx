@@ -7,9 +7,9 @@ const LayoutProtected = () => {
     const UserDate = getLocalStorage("userLogged");
 
     if (!UserLogged) {
-        return <Navigate to="/" />
+        return <Navigate to="/error" />
     } else if (!(UserDate.role === "ADMIN")) {
-        return <Navigate to="/" />
+        return <Navigate to="/error" />
     }
 
     return (

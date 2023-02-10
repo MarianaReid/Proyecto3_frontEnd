@@ -68,7 +68,7 @@ const FormCreateProduct = ({
             'Presiona ok para continuar',
             'success'
         )
-        navigate('/admin');
+        navigate('/admin/edit/product');
     };
 
     return (
@@ -119,7 +119,7 @@ const FormCreateProduct = ({
                             <Button className='my-3 btn-block' variant="warning" type="button" onClick={editProduct}>
                                 Editar
                             </Button>
-                            <Button className='my-3 btn-block' variant="danger" type="button" onClick={() => navigate('/admin')}>
+                            <Button className='my-3 btn-block' variant="danger" type="button" onClick={() => navigate('/admin/edit/product')}>
                                 Cancelar
                             </Button>
                         </>)
