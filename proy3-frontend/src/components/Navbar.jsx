@@ -62,19 +62,19 @@ const OffCanvas = ({ UserData }) => {
                           className='mb-2'
                         >
                           <NavDropdown.Item>
-                            <NavLink to="/admin" onClick={handleClose}>
+                            <NavLink to="/admin/edit/user" onClick={handleClose}>
                               Usuarios
                             </NavLink>
                           </NavDropdown.Item>
                           <NavDropdown.Divider />
                           <NavDropdown.Item>
-                            <NavLink to="/admin" onClick={handleClose}>
+                            <NavLink to="/admin/edit/product" onClick={handleClose}>
                               Productos
                             </NavLink>
                           </NavDropdown.Item>
                           <NavDropdown.Divider />
                           <NavDropdown.Item>
-                            <NavLink to="/admin" onClick={handleClose}>
+                            <NavLink to="/admin/edit/order" onClick={handleClose}>
                               Pedidos
                             </NavLink>
                           </NavDropdown.Item>

@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import LayoutProducts from "../layout/LayoutProducts";
 import LayoutProtected from "../layout/LayoutProtected";
 import LayoutPublic from "../layout/LayoutPublic";
-import Admin from "../pages/Admin";
+import AdminProduct from "../pages/AdminProduct";
+import AdminUser from "../pages/AdminUser";
 import Building from "../pages/Building";
 import Category, { loaderCategory } from "../pages/Category";
 import Error from "../pages/Error";
@@ -12,13 +13,14 @@ import Login from "../pages/Login";
 import ProductEdit from "../pages/ProductEdit";
 import ProductMenu, { loaderProduct } from "../pages/ProductMenu";
 import Registro from "../pages/Registro";
+import UserEdit from "../pages/UserEdit";
 import Welcom, { loaderWelcom } from "../pages/Welcom";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <LayoutPublic />,
-        // errorElement: <Error />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -54,24 +56,31 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: "/api/user/active-account/:id",
-                element: <Welcom />,
-                loader: loaderWelcom,
-            },
-            {
-                path: "/admin",
                 element: <LayoutProtected />,
                 errorElement: <Error />,
                 children: [
                     {
-                        index: true,
-                        element: <Admin />,
+                        path: "/admin/edit/product",
+                        element: <AdminProduct />,
                     },
                     {
                         path: "/admin/edit/product/:id",
                         element: <ProductEdit />,
                     },
+                    {
+                        path: "/admin/edit/user",
+                        element: <AdminUser />,
+                    },
+                    {
+                        path: "/admin/edit/user/:id",
+                        element: <UserEdit />,
+                    },
                 ]
+            },
+            {
+                path: "/api/user/active-account/:id",
+                element: <Welcom />,
+                loader: loaderWelcom,
             },
             {
                 path: "/error",
