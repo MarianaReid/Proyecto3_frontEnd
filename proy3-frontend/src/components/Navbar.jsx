@@ -79,13 +79,13 @@ const OffCanvas = ({ UserData }) => {
                             </NavLink>
                           </NavDropdown.Item>
                         </NavDropdown>
-                        <hr />
-                        <Nav.Link className='mt-2'>
-                          <NavLink to="/" onClick={() => closeSession()}>Cerrar sesión
-                          </NavLink>
-                        </Nav.Link>
                       </>
                     }
+                    <hr />
+                    <Nav.Link className='mt-2'>
+                      <NavLink to="/" onClick={() => closeSession()}>Cerrar sesión
+                      </NavLink>
+                    </Nav.Link>
                   </>
                 )
                 }

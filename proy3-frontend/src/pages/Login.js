@@ -80,8 +80,14 @@ const Login = () => {
         setLocalStorage('token', data.token)
         setLocalStorage('userLogged', data.userData)
 
-        navigate(-1);
-      } else {
+        navigate("/");
+      } else if (respuesta.status === 403) {
+        Swal.fire(
+          "Error en Login",
+          "El usuario no esta activo, contacte al administrador",
+          "error"
+        );
+      }else {
         Swal.fire(
           "Error en Login",
           "No se pudo iniciar sesion, el usuario y/o la contraseña son incorrectos",
