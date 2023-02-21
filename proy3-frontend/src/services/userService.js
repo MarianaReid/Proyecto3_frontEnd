@@ -18,7 +18,7 @@ export const userLogin = async (data) => {
 
 export const getAllUsers = async () => {
     try {
-        return await clientAxios.get('/users?limit=60')
+        return await clientAxios.get('/users?limit=100')
     } catch (error) {
         console.error(error);
     }

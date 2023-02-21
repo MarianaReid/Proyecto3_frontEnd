@@ -68,8 +68,8 @@ const AdminProduct = () => {
                     <InputGroup className="mb-3 my-3">
                         <InputGroup.Text id="basic-addon1">Buscar</InputGroup.Text>
                         <Form.Control
-                            placeholder="Username"
-                            aria-label="Username"
+                            placeholder="Productos"
+                            aria-label="Productos"
                             aria-describedby="basic-addon1"
                             onChange={(e) => setTerm(e.target.value)}
                         />

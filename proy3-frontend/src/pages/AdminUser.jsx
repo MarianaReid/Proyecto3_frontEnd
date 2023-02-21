@@ -27,7 +27,7 @@ const AdminUser = () => {
     }, []);
 
     useEffect(() => {
-        const search = usuarios.filter(user => user.name.toLowerCase().includes(term.toLowerCase()));
+        const search = usuarios.filter(user => user.name?.toLowerCase().includes(term.toLowerCase()));
         setUsuariosSearch(search)
     }, [term, usuarios])
 
@@ -68,8 +68,8 @@ const AdminUser = () => {
                     <InputGroup className="mb-3 my-3">
                         <InputGroup.Text id="basic-addon1">Buscar</InputGroup.Text>
                         <Form.Control
-                            placeholder="Username"
-                            aria-label="Username"
+                            placeholder="Usuarios"
+                            aria-label="Usuarios"
                             aria-describedby="basic-addon1"
                             onChange={(e) => setTerm(e.target.value)}
                         />
