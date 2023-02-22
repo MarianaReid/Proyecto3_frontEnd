@@ -17,6 +17,26 @@ const FormCreateUser = ({
 }) => {
     const [newUser, setNewUser] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }else if (form.checkValidity() === true) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (isEdit) {
+                editUser();
+            } else {
+                crearUsuario();
+            }
+        }
+
+        setValidated(true);
+
+    };
 
     const navigate = useNavigate();
 
@@ -62,11 +82,13 @@ const FormCreateUser = ({
         <div>
             <h1>{isEdit ? 'Editar Usuario' : 'Agregar Usuario'}</h1>
             <Loader isLoading={isLoading || isEditLoading}>
-                <Form>
+                <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control
                             type="text"
+                            maxlength="50"
+                            required
                             value={newUser?.name}
                             onChange={(e) => handleChange(e)}
                         />
@@ -75,6 +97,8 @@ const FormCreateUser = ({
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                             type="email"
+                            maxlength="50"
+                            required
                             value={newUser?.email}
                             onChange={(e) => handleChange(e)}
                         />
@@ -89,7 +113,7 @@ const FormCreateUser = ({
                     </Form.Group>
                     {isEdit ?
                         (<>
-                            <Button className='my-3 btn-block' variant="warning" type="button" onClick={editUser}>
+                            <Button className='my-3 btn-block' variant="warning" type="submit">
                                 Editar
                             </Button>
                             <Button className='my-3 btn-block' variant="danger" type="button" onClick={() => navigate('/admin/edit/user')}>
@@ -97,7 +121,7 @@ const FormCreateUser = ({
                             </Button>
                         </>)
                         :
-                        (<Button className='my-3 btn-block' variant="success" type="button" onClick={crearUsuario}>
+                        (<Button className='my-3 btn-block' variant="success" type="submit">
                             Agregar
                         </Button>)}
                 </Form>
