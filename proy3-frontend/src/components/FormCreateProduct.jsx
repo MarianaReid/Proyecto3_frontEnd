@@ -20,7 +20,6 @@ const FormCreateProduct = ({
     const [isLoading, setIsLoading] = useState(false);
     const [selectCategories, setSelectCategories] = useState('')
     const [categories, setCategories] = useState([]);
-
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = (event) => {
@@ -101,6 +100,7 @@ const FormCreateProduct = ({
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control
                             type="text"
+                            maxlength="50"
                             required
                             value={newProduct?.name}
                             onChange={(e) => handleChange(e)}
@@ -113,6 +113,7 @@ const FormCreateProduct = ({
                             value={newProduct?.price}
                             onChange={(e) => handleChange(e)}
                             min="1"
+                            max="10000000"
                             required
                         />
                     </Form.Group>
@@ -120,6 +121,7 @@ const FormCreateProduct = ({
                         <Form.Label>Imágen</Form.Label>
                         <Form.Control
                             type="text"
+                            maxlength="100"
                             value={newProduct?.image}
                             onChange={(e) => handleChange(e)}
                         />
@@ -131,6 +133,7 @@ const FormCreateProduct = ({
                             value={newProduct?.stock}
                             onChange={(e) => handleChange(e)}
                             min="1"
+                            max="10000"
                             required
                         />
                     </Form.Group>
