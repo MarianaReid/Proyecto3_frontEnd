@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Swal from 'sweetalert2';
 import { createUsers, updateUser } from '../services/userService';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
 const FormCreateUser = ({
     setCreateUser,
@@ -37,6 +39,17 @@ const FormCreateUser = ({
         setValidated(true);
 
     };
+
+    
+const schemaFormCreateUser = yup.object().shape({
+    name: yup.string().required('Campo obligatorio'),
+    email: yup.string().email('El mail es inválido').required('Campo obligatorio'),
+    password: yup
+    .string()
+    .required('Campo obligatorio')
+    .min(8, 'Debe tener mínimo 8 caracteres')
+    .matches(/[a-zA-Z]/, 'Debe tener minúsculas y mayúsculas'),
+});
 
     const navigate = useNavigate();
 
@@ -80,36 +93,69 @@ const FormCreateUser = ({
 
     return (
         <div>
+            <Formik
+                    validationSchema={schemaFormCreateUser}
+                    initialValues={{
+                        name: '',
+                        email: '',
+                        password: '',
+                    }}
+                >
             <h1>{isEdit ? 'Editar Usuario' : 'Agregar Usuario'}</h1>
             <Loader isLoading={isLoading || isEditLoading}>
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                {({
+                        handleSubmit,
+                        handleChange,
+                        values,
+                        touched,
+                        errors,
+                        isSubmitting,
+                    }) => (      
+                <Form noValidate onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control
-                            type="text"
-                            maxlength="50"
-                            required
-                            value={newUser?.name}
-                            onChange={(e) => handleChange(e)}
-                        />
+                                    type="text"
+                                    name="name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    isValid={touched.name && !errors.name}
+                                    isInvalid={!!errors.name}
+                                    feedback={errors.name}
+                                    feedbackType="invalid"
+                                />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="email">
                         <Form.Label>Email</Form.Label>
                         <Form.Control
-                            type="email"
-                            maxlength="50"
-                            required
-                            value={newUser?.email}
-                            onChange={(e) => handleChange(e)}
-                        />
+                                    type="email"
+                                    name="email"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    isValid={touched.email && !errors.email}
+                                    isInvalid={!!errors.email}
+                                    feedback={errors.email}
+                                    feedbackType="invalid"
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.email}
+                                </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="password">
                         <Form.Label>Contraseña</Form.Label>
                         <Form.Control
-                            type="password"
-                            value={newUser?.password}
-                            onChange={(e) => handleChange(e)}
-                        />
+                                    type="password"
+                                    name="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    isValid={touched.password && !errors.password}
+                                    isInvalid={!!errors.password}
+                                    feedback={errors.password}
+                                    feedbackType="invalid"
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.password}
+                                </Form.Control.Feedback>
                     </Form.Group>
                     {isEdit ?
                         (<>
@@ -125,7 +171,9 @@ const FormCreateUser = ({
                             Agregar
                         </Button>)}
                 </Form>
+                )}
             </Loader>
+            </Formik>    
         </div>
     );
 };
