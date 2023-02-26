@@ -23,6 +23,17 @@ const Pedidos = () => {
     // const [total, setTotal] = useState(0);
     // const [botonActivo, setBotonActivo]=useState(true)
 
+    const actualizarTotal=(lista)=>{
+        let subTotal = 0;
+        lista.map((item)=>subTotal += item.precio * item.cantidad);
+        setTotal(subTotal);
+        if(subTotal === 0){
+            setBotonActivo(false)
+        }else{
+            setBotonActivo(true)
+        }
+    }
+
     return (
         <div className="text-center text-dark carrito">
             <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
