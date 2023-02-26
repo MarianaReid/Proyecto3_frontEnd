@@ -8,7 +8,21 @@ import "./Pedidos.css";
 import { formatMoneda } from "./HelperCarrito";
 
 const Pedidos = () => {
-   
+    const navigate = useNavigate();
+    // const URL =  "https://proyecto3-rolling-code-los-crack.vercel.app/api";
+
+    useEffect(() => {
+        actualizarTotal(listaProductosPedido);
+        window.scrollTo(0, 0);
+    }, []);
+
+    // const productosPedidoTemp = JSON.parse(localStorage.getItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products%22))  [];
+
+    // const usuario = JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALSTORAGE))  { nombre: "anonimo!!" };
+    // const [listaProductosPedido, setListaProductosPedido] = useState(productosPedidoTemp);
+    // const [total, setTotal] = useState(0);
+    // const [botonActivo, setBotonActivo]=useState(true)
+
     return (
         <div className="text-center text-dark carrito">
             <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
