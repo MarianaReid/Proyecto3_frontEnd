@@ -9,6 +9,7 @@ export const AgregarCarrito = (producto) => {
 
 
         let i = productosPedido.findIndex((item)=>{return item._id === producto._id});
+        
 
         if (i>=0) {
           if (productosPedido[i].cantidad !== undefined)
