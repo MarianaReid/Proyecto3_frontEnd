@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavDropdown } from 'react-bootstrap';
+import { Badge, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,6 +10,7 @@ import "./Navbar.css";
 
 
 const OffCanvas = ({ UserData }) => {
+  const [cartItems, setCartItems] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,6 +40,17 @@ const OffCanvas = ({ UserData }) => {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
+              {UserData && (
+                <>
+                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <Nav.Link href="#cart">
+                      <i className="fas fa-shopping-cart"></i>
+                      <Badge variant="secondary" className='mx-1'>{cartItems.length}</Badge>
+                    </Nav.Link>
+                  </Nav>
+                  <hr />
+                </>
+              )}
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 {!UserData ? (
                   <>
