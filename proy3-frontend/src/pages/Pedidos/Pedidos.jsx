@@ -83,6 +83,43 @@ const Pedidos = () => {
         }
     }
 
+    const guardarPedido = async () => {
+        try {
+            const today = new Date();
+            let day = today.getDate();
+            if (day < 10) day = "0" + day;
+            let month = today.getMonth() + 1;
+            if (month < 10) month = "0" + month;
+            let year = today.getFullYear();
+            year = year % 100;
+            let fecha = ${day}/${month}/${year};
+            const pedidos = {
+                usuario: usuario.nombre,
+                fecha,
+                productosdelmenu: [...listaProductosPedido],
+                estado: false, 
+            };
+            const respuesta = await fetch(URL + "pedidos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(pedidos),
+            });
+            const data = await respuesta.json();
+            if (respuesta.status === 201) {
+                // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify([]));
+                setListaProductosPedido([]);
+                navigate("/");
+
+                Swal.fire("Perfecto!", "Su pedido esta siendo preparado!", "success");
+            } else {
+                Swal.fire("Ups!", "Ha ocurrido un error, intente nuevamente", "error");
+            }
+        } catch (error) {
+        }
+    };
+
     return (
         <div className="text-center text-dark carrito">
             <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
