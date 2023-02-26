@@ -58,6 +58,31 @@ const Pedidos = () => {
         });
     };
 
+    const restarUno = (producto) => {
+        let i = listaProductosPedido.findIndex((item) => {
+            return item._id === producto._id;
+        });
+        if (i>=0 && listaProductosPedido[i].cantidad>1) 
+        {
+            listaProductosPedido[i].cantidad--;
+            actualizarTotal(listaProductosPedido);
+
+            // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify(listaProductosPedido));
+        }
+    }
+
+    const sumarUno = (producto) => {
+        let i = listaProductosPedido.findIndex((item) => {
+            return item._id === producto._id;
+        });
+        if (i>=0) 
+        {
+            listaProductosPedido[i].cantidad++;
+            actualizarTotal(listaProductosPedido);
+            // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify(listaProductosPedido));
+        }
+    }
+
     return (
         <div className="text-center text-dark carrito">
             <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
