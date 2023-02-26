@@ -120,6 +120,26 @@ const Pedidos = () => {
         }
     };
 
+    const borrarCarrito = () =>{
+        Swal.fire({
+            title: "Esta seguro?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, borrar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify([]));
+                setListaProductosPedido([]);
+                setTotal(0);
+                setBotonActivo(false)
+                Swal.fire("El carrito se vacio con exito", "Los productos fueron quitados del pedido", "success");
+            }
+        });
+    }
+
     return (
         <div className="text-center text-dark carrito">
             <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
