@@ -140,6 +140,25 @@ const Pedidos = () => {
         });
     }
 
+    const handleClick = () => {
+        actualizarTotal(listaProductosPedido);
+
+        Swal.fire({
+            title: "Esta seguro?",
+            text: Total a pagar :$ ${total},
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, pagar!",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                guardarPedido();
+            }
+        });
+    };
+
     return (
         <div className="text-center text-dark carrito">
             <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
