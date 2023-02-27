@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import FormCreateUser from '../components/FormCreateUser';
 import Loader from '../components/Loader';
-import { deleteUser, getAllUsers } from '../services/userService';
+import { deleteUser, getAllUsers, updateUser } from '../services/userService';
 
 const AdminUser = () => {
     const [usuarios, setUsuarios] = useState([]);
@@ -30,6 +30,21 @@ const AdminUser = () => {
         const search = usuarios.filter(user => user.name?.toLowerCase().includes(term.toLowerCase()));
         setUsuariosSearch(search)
     }, [term, usuarios])
+
+    const editUser = async (_id, isActive) => {
+        setLoading(true);
+        await updateUser(_id, isActive);
+        setLoading(false);
+        Swal.fire(
+            'Usuario editado!',
+            'Presiona ok para continuar',
+            'success'
+        )
+        // const filteredUsers = usuarios.filter(
+        //     (user) => user._id === _id
+        // );
+        // setUsuarios(filteredUsers);
+    };
 
     const deleteUsuario = async (id) => {
         setLoading(true);
@@ -90,6 +105,7 @@ const AdminUser = () => {
                                     <td>
                                         <Button
                                             type="button"
+                                            size="sm"
                                             className="m-1"
                                             variant="danger"
                                             onClick={() => deleteUsuario(usuario._id)}
@@ -98,6 +114,7 @@ const AdminUser = () => {
                                         </Button>
                                         <Button
                                             type="button"
+                                            size="sm"
                                             className="m-1"
                                             variant="warning"
                                             onClick={() =>
@@ -105,6 +122,15 @@ const AdminUser = () => {
                                             }
                                         >
                                             E
+                                        </Button>
+                                        <Button
+                                            type="button"
+                                            size="sm"
+                                            className="m-1"
+                                            {...!usuario.isActive ? { variant: "success" } : { variant: "info" }}
+                                            onClick={() => editUser(usuario._id, { isActive: !usuario.isActive })}
+                                        >
+                                            {usuario.isActive ? "I" : "A"}
                                         </Button>
                                     </td>
                                 </tr>
