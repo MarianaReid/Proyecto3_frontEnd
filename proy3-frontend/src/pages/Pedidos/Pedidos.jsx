@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+import { Table, Button } from 'react-bootstrap';
 import Swal from "sweetalert2";
 import ItemPedidos from "./ItemPedidos"
 import { useNavigate } from "react-router-dom";
@@ -9,30 +8,33 @@ import { formatMoneda } from "./HelperCarrito";
 
 const Pedidos = () => {
     const navigate = useNavigate();
-    // const URL =  "https://proyecto3-rolling-code-los-crack.vercel.app/api";
+    const URL = "https://proyecto3-rolling-code-los-crack.vercel.app/api";
+
+    const productosPedidoTemp = JSON.parse(localStorage.getItem("carrito")) || [];
+    const usuario = JSON.parse(localStorage.getItem("userLogged")) || { name: "anonimo!!" };
+    const [listaProductosPedido, setListaProductosPedido] = useState(productosPedidoTemp);
+    const [total, setTotal] = useState(0);
+    const [botonActivo, setBotonActivo] = useState(true)
+
 
     useEffect(() => {
+        const actualizarTotal = (lista) => {
+            let subTotal = 0;
+            lista.map((item) => subTotal += item.price * item.cantidad);
+            setTotal(subTotal);
+            setListaProductosPedido(lista)
+            if (subTotal === 0) {
+                setBotonActivo(false)
+            } else {
+                setBotonActivo(true)
+            }
+        }
+
         actualizarTotal(listaProductosPedido);
         window.scrollTo(0, 0);
-    }, []);
+    }, [listaProductosPedido]);
 
-    // const productosPedidoTemp = JSON.parse(localStorage.getItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products%22))  [];
 
-    // const usuario = JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALSTORAGE))  { nombre: "anonimo!!" };
-    // const [listaProductosPedido, setListaProductosPedido] = useState(productosPedidoTemp);
-    // const [total, setTotal] = useState(0);
-    // const [botonActivo, setBotonActivo]=useState(true)
-
-    const actualizarTotal=(lista)=>{
-        let subTotal = 0;
-        lista.map((item)=>subTotal += item.precio * item.cantidad);
-        setTotal(subTotal);
-        if(subTotal === 0){
-            setBotonActivo(false)
-        }else{
-            setBotonActivo(true)
-        }
-    }
 
     const quitarProducto = (producto) => {
         Swal.fire({
@@ -48,10 +50,10 @@ const Pedidos = () => {
                 let nuevaLista = listaProductosPedido.filter((item) => {
                     return item._id !== producto._id;
                 });
-                actualizarTotal(nuevaLista);
+                // actualizarTotal(nuevaLista);
                 setListaProductosPedido(nuevaLista);
 
-                // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify(nuevaLista));
+                localStorage.setItem("carrito", JSON.stringify(nuevaLista));
 
                 Swal.fire("Producto eliminado", "El producto fue quitado del pedido", "success");
             }
@@ -62,12 +64,12 @@ const Pedidos = () => {
         let i = listaProductosPedido.findIndex((item) => {
             return item._id === producto._id;
         });
-        if (i>=0 && listaProductosPedido[i].cantidad>1) 
-        {
+        if (i >= 0 && listaProductosPedido[i].cantidad > 1) {
             listaProductosPedido[i].cantidad--;
-            actualizarTotal(listaProductosPedido);
+            // actualizarTotal(listaProductosPedido);
+            setListaProductosPedido(listaProductosPedido);
 
-            // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify(listaProductosPedido));
+            localStorage.setItem("carrito", JSON.stringify(listaProductosPedido));
         }
     }
 
@@ -75,11 +77,11 @@ const Pedidos = () => {
         let i = listaProductosPedido.findIndex((item) => {
             return item._id === producto._id;
         });
-        if (i>=0) 
-        {
+        if (i >= 0) {
             listaProductosPedido[i].cantidad++;
-            actualizarTotal(listaProductosPedido);
-            // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify(listaProductosPedido));
+            // actualizarTotal(listaProductosPedido);
+            localStorage.setItem("carrito", JSON.stringify(listaProductosPedido));
+            setListaProductosPedido(listaProductosPedido);
         }
     }
 
@@ -92,12 +94,12 @@ const Pedidos = () => {
             if (month < 10) month = "0" + month;
             let year = today.getFullYear();
             year = year % 100;
-            let fecha = ${day}/${month}/${year};
+            let fecha = `${day}/${month}/${year}`;
             const pedidos = {
-                usuario: usuario.nombre,
+                usuario: usuario.name,
                 fecha,
                 productosdelmenu: [...listaProductosPedido],
-                estado: false, 
+                estado: false,
             };
             const respuesta = await fetch(URL + "pedidos", {
                 method: "POST",
@@ -108,7 +110,7 @@ const Pedidos = () => {
             });
             const data = await respuesta.json();
             if (respuesta.status === 201) {
-                // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify([]));
+                localStorage.setItem("carrito", JSON.stringify([]));
                 setListaProductosPedido([]);
                 navigate("/");
 
@@ -120,7 +122,7 @@ const Pedidos = () => {
         }
     };
 
-    const borrarCarrito = () =>{
+    const borrarCarrito = () => {
         Swal.fire({
             title: "Esta seguro?",
             icon: "warning",
@@ -131,7 +133,7 @@ const Pedidos = () => {
             cancelButtonText: "Cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
-                // localStorage.setItem("https://proyecto3-rolling-code-los-crack.vercel.app/api/products", JSON.stringify([]));
+                localStorage.setItem("carrito", JSON.stringify([]));
                 setListaProductosPedido([]);
                 setTotal(0);
                 setBotonActivo(false)
@@ -141,11 +143,11 @@ const Pedidos = () => {
     }
 
     const handleClick = () => {
-        actualizarTotal(listaProductosPedido);
+        // actualizarTotal(listaProductosPedido);
 
         Swal.fire({
             title: "Esta seguro?",
-            text: Total a pagar :$ ${total},
+            text: `Total a pagar :$ ${total}`,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -180,16 +182,13 @@ const Pedidos = () => {
                     </tbody>
                 </Table>
                 <p>Total: {formatMoneda(total)}</p>
-                {/* <p>Total: ...?</p> */}
                 <div className="text-end">
-                    <Button variant="danger" className="mt-3 me-3 text-light" onClick={borrarCarrito}>Borrar carrito</Button>
-                    {/* <Button variant="danger" className="mt-3 me-3 text-light">Borrar carrito</Button> */}
+                    <Button variant="danger" className="mt-3 me-3 text-light" onClick={borrarCarrito}>
+                        Borrar carrito
+                    </Button>
                     <Button variant="primary" className="mt-3" onClick={handleClick} disabled={!botonActivo}>
                         Proceder a pagar
                     </Button>
-                    {/* <Button variant="primary" className="mt-3">
-                        Proceder a pagar
-                    </Button> */}
                 </div>
             </div>
         </div>

@@ -10,6 +10,7 @@ import Error from "../pages/Error";
 import Home, { loaderCategories } from "../pages/Home";
 import LandingPageProducts from "../pages/LandingPageProducts";
 import Login from "../pages/Login";
+import Pedidos from "../pages/Pedidos/Pedidos";
 import ProductEdit from "../pages/ProductEdit";
 import ProductMenu, { loaderProduct } from "../pages/ProductMenu";
 import Registro from "../pages/Registro";
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
                         path: "/products/category/:id",
                         element: <Category />,
                         loader: loaderCategory,
+                    },
+                    {
+                        path: "/products/pedidos",
+                        element: <Pedidos />,
                     },
                 ]
             },
