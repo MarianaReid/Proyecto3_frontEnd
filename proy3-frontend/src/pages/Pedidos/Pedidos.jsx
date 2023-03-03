@@ -5,34 +5,33 @@ import ItemPedidos from "./ItemPedidos"
 import { useNavigate } from "react-router-dom";
 import "./Pedidos.css";
 import { formatMoneda } from "./HelperCarrito";
+import { createCart } from "../../services/cartsService";
 
 const Pedidos = () => {
     const navigate = useNavigate();
-    const URL = "https://proyecto3-rolling-code-los-crack.vercel.app/api";
 
     const productosPedidoTemp = JSON.parse(localStorage.getItem("carrito")) || [];
-    const usuario = JSON.parse(localStorage.getItem("userLogged")) || { name: "anonimo!!" };
+    const usuario = JSON.parse(localStorage.getItem("userLogged"));
     const [listaProductosPedido, setListaProductosPedido] = useState(productosPedidoTemp);
     const [total, setTotal] = useState(0);
     const [botonActivo, setBotonActivo] = useState(true)
+    const [modTotal, setModTotal] = useState(false);
 
-
-    useEffect(() => {
-        const actualizarTotal = (lista) => {
-            let subTotal = 0;
-            lista.map((item) => subTotal += item.price * item.cantidad);
-            setTotal(subTotal);
-            setListaProductosPedido(lista)
-            if (subTotal === 0) {
-                setBotonActivo(false)
-            } else {
-                setBotonActivo(true)
-            }
+    const actualizarTotal = (lista) => {
+        let subTotal = 0;
+        lista.map((item) => subTotal += item.price * item.cantidad);
+        setTotal(subTotal);
+        setListaProductosPedido(lista)
+        if (subTotal === 0) {
+            setBotonActivo(false)
+        } else {
+            setBotonActivo(true)
         }
-
+    }
+    useEffect(() => {
         actualizarTotal(listaProductosPedido);
         window.scrollTo(0, 0);
-    }, [listaProductosPedido]);
+    }, [listaProductosPedido, modTotal]);
 
 
 
@@ -87,112 +86,103 @@ const Pedidos = () => {
 
     const guardarPedido = async () => {
         try {
-            const today = new Date();
-            let day = today.getDate();
-            if (day < 10) day = "0" + day;
-            let month = today.getMonth() + 1;
-            if (month < 10) month = "0" + month;
-            let year = today.getFullYear();
-            year = year % 100;
-            let fecha = `${day}/${month}/${year}`;
             const pedidos = {
-                usuario: usuario.name,
-                fecha,
-                productosdelmenu: [...listaProductosPedido],
-                estado: false,
+                users: usuario.id,
+                productsCart: [...listaProductosPedido],
             };
-            const respuesta = await fetch(URL + "pedidos", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(pedidos),
+
+                const { data } = await createCart(pedidos);
+                Swal.fire(
+                    'Creado!',
+                    'Presiona ok para continuar',
+                    'success'
+                )
+                
+                if (data) {
+                    localStorage.setItem("carrito", JSON.stringify([]));
+                    setListaProductosPedido([]);
+                    navigate("/");
+
+                    Swal.fire("Perfecto!", "Su pedido esta siendo preparado!", "success");
+                } else {
+                    Swal.fire("Ups!", "Ha ocurrido un error, intente nuevamente", "error");
+                }
+            } catch (error) {
+                console.log("ERROR ",error);
+            }
+        };
+
+        const borrarCarrito = () => {
+            Swal.fire({
+                title: "Esta seguro?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, borrar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.setItem("carrito", JSON.stringify([]));
+                    setListaProductosPedido([]);
+                    setTotal(0);
+                    setBotonActivo(false)
+                    Swal.fire("El carrito se vacio con exito", "Los productos fueron quitados del pedido", "success");
+                }
             });
-            const data = await respuesta.json();
-            if (respuesta.status === 201) {
-                localStorage.setItem("carrito", JSON.stringify([]));
-                setListaProductosPedido([]);
-                navigate("/");
-
-                Swal.fire("Perfecto!", "Su pedido esta siendo preparado!", "success");
-            } else {
-                Swal.fire("Ups!", "Ha ocurrido un error, intente nuevamente", "error");
-            }
-        } catch (error) {
         }
-    };
 
-    const borrarCarrito = () => {
-        Swal.fire({
-            title: "Esta seguro?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Si, borrar",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                localStorage.setItem("carrito", JSON.stringify([]));
-                setListaProductosPedido([]);
-                setTotal(0);
-                setBotonActivo(false)
-                Swal.fire("El carrito se vacio con exito", "Los productos fueron quitados del pedido", "success");
-            }
-        });
-    }
+        const handleClick = () => {
+            // actualizarTotal(listaProductosPedido);
 
-    const handleClick = () => {
-        // actualizarTotal(listaProductosPedido);
+            Swal.fire({
+                title: "Esta seguro?",
+                text: `Total a pagar :$ ${total}`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, pagar!",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    guardarPedido();
+                }
+            });
+        };
 
-        Swal.fire({
-            title: "Esta seguro?",
-            text: `Total a pagar :$ ${total}`,
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Si, pagar!",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                guardarPedido();
-            }
-        });
-    };
-
-    return (
-        <div className="text-center text-dark carrito">
-            <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
-            <div className="tabla container py-3 mb-5">
-                <Table striped responsive>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Sub-total</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {listaProductosPedido.map((producto) => (
-                            <ItemPedidos key={producto._id} producto={producto} quitarProducto={quitarProducto} restarUno={restarUno} sumarUno={sumarUno}></ItemPedidos>
-                        ))}
-                    </tbody>
-                </Table>
-                <p>Total: {formatMoneda(total)}</p>
-                <div className="text-end">
-                    <Button variant="danger" className="mt-3 me-3 text-light" onClick={borrarCarrito}>
-                        Borrar carrito
-                    </Button>
-                    <Button variant="primary" className="mt-3" onClick={handleClick} disabled={!botonActivo}>
-                        Proceder a pagar
-                    </Button>
+        return (
+            <div className="text-center text-dark carrito">
+                <h1 className="text-light bg-dark container rounded-top mb-0 p-3">CARRITO DE COMPRAS</h1>
+                <div className="tabla container py-3 mb-5">
+                    <Table striped responsive>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Sub-total</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listaProductosPedido.map((producto) => (
+                                <ItemPedidos key={producto._id} producto={producto} quitarProducto={quitarProducto} restarUno={restarUno} sumarUno={sumarUno} modTotal={modTotal} setModTotal={setModTotal}></ItemPedidos>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <p>Total: {formatMoneda(total)}</p>
+                    <div className="text-end">
+                        <Button variant="danger" className="mt-3 me-3 text-light" onClick={borrarCarrito} disabled={!botonActivo}>
+                            Borrar carrito
+                        </Button>
+                        <Button variant="primary" className="mt-3" onClick={handleClick} disabled={!botonActivo}>
+                            Proceder a pagar
+                        </Button>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-};
+        );
+    };
 
-export default Pedidos;
+    export default Pedidos;

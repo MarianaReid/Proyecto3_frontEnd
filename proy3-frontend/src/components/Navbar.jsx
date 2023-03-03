@@ -1,25 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Badge, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink } from 'react-router-dom';
-import { removeLocalStorage } from '../utils/LocalStorageHelper';
 import "./Navbar.css";
 
 
 const OffCanvas = ({ UserData }) => {
-  const [cartItems, setCartItems] = useState([]);
+
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [lista, setLista] = useState([]);
+  const [cartitem, setCartItem] = useState(0);
+
+  
+  useEffect(() => {
+    setLista(JSON.parse(localStorage.getItem("carrito")));
+    let subTotal = lista.length;
+    setCartItem(subTotal);
+  },[]);
 
   const closeSession = () => {
-    removeLocalStorage("userLogged");
-    removeLocalStorage("token");
+    localStorage.clear();
     handleClose();
   }
+
 
   return (
     <>
@@ -43,9 +52,11 @@ const OffCanvas = ({ UserData }) => {
               {UserData && (
                 <>
                   <Nav className="justify-content-end flex-grow-1 pe-3">
-                    <Nav.Link href="#cart">
-                      <i className="fas fa-shopping-cart"></i>
-                      <Badge variant="secondary" className='mx-1'>{cartItems.length}</Badge>
+                    <Nav.Link>
+                      <NavLink to="/products/pedidos" onClick={handleClose}>
+                        <i className="fas fa-shopping-cart"></i>
+                      </NavLink>
+                      <Badge variant="secondary" className='mx-1'>{cartitem}</Badge>
                     </Nav.Link>
                   </Nav>
                   <hr />

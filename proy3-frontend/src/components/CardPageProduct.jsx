@@ -1,8 +1,8 @@
 import React from 'react'
-import { Card, ListGroup } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Button, Card, ListGroup } from 'react-bootstrap'
+import { AgregarCarrito } from '../pages/Pedidos/HelperCarrito'
 
-const CardPageProduct = ({ _id, image, name, description, price, stock }) => {
+const CardPageProduct = ({ _id, product, image, name, description, price, stock }) => {
     return (
         <Card className='m-auto my-3'>
             <Card.Header className='m-auto text-center'>{name}</Card.Header>
@@ -18,9 +18,7 @@ const CardPageProduct = ({ _id, image, name, description, price, stock }) => {
             </ListGroup>
             <Card.Body>
                 <Card.Link>
-                    <Link to={"/building"}>
-                        Añadir al carrito
-                    </Link>
+                <Button variant='success' onClick={() => AgregarCarrito(product) }>Añadir al carrito</Button>
                 </Card.Link>
             </Card.Body>
         </Card>
