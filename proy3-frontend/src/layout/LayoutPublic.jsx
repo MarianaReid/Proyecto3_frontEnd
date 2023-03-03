@@ -14,10 +14,10 @@ const LayoutPublic = () => {
                 {navigation.state === "loading" && (
                     <div className="alert alert-info my-5">Cargando...</div>
                 )}
-                
+
                 <OffCanvas UserData={UserData} />
 
-                <Outlet />
+                <Outlet/>
 
                 <Footer />
 

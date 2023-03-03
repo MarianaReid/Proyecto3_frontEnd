@@ -13,7 +13,7 @@ const ProductMenu = () => {
         <Link to="/products">
         <Button className='btn-block'>Volver</Button>
         </Link>
-        <CardPageProduct _id={product._id} image={product.image} name={product.name} description={product.description} price={product.price} stock={product.stock} />
+        <CardPageProduct _id={product._id} product={product} image={product.image} name={product.name} description={product.description} price={product.price} stock={product.stock} />
       </Row>
     </>
   )
