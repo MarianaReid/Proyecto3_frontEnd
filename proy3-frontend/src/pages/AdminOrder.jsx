@@ -74,12 +74,12 @@ const AdminOrder = () => {
                                         size="sm"
                                         className="m-1"
                                         {...!order.isActive ? { variant: "warning" } : { variant: "success" }}
-                                        {...!order.isActive ? { disabled: false } : { disabled: false }}
+                                        {...!order.isActive ? { disabled: false } : { disabled: true }}
                                         onClick={() => {
                                             editCart(order._id, {isActive: !order.isActive})
                                         }}
                                     >
-                                        {order.isActive ? "Entregado" : "Pendiente"}
+                                        {order.isActive ? "E" : "P"}
                                     </Button>
                                 </td>
                             </tr>

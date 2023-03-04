@@ -22,7 +22,7 @@ const OffCanvas = ({ UserData }) => {
     setLista(JSON.parse(localStorage.getItem("carrito")));
     let subTotal = lista.length;
     setCartItem(subTotal);
-  },[]);
+  },[lista]);
 
   const closeSession = () => {
     localStorage.clear();
