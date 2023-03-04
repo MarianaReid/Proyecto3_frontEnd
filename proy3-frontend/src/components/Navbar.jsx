@@ -20,7 +20,7 @@ const OffCanvas = ({ UserData }) => {
   
   useEffect(() => {
     setLista(JSON.parse(localStorage.getItem("carrito")));
-    let subTotal = lista.length;
+    let subTotal = lista?.length;
     setCartItem(subTotal);
   },[lista]);
 
