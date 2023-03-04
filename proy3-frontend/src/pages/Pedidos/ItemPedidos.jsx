@@ -13,9 +13,9 @@ const ItemPedidos = ({ producto, quitarProducto, restarUno, sumarUno, modTotal, 
     <tr>
       <td className='itemPedido'>{producto.name}</td>
       <td className='itemPedido'>
-        <Button variant='outline-light'><Badge bg="secondary" onClick={() =>  { setCant( cant-1); setModTotal(!modTotal); restarUno(producto)}}>-</Badge></Button>
+        <Button variant='outline-light'><Badge bg="secondary" onClick={() =>  { setCant((cant-1)>0?cant-1:1); setModTotal(!modTotal); restarUno(producto)}}>-</Badge></Button>
         {cant}
-        <Button variant='outline-light'><Badge bg="secondary" onClick={() => { setCant( cant+1); setModTotal(!modTotal); sumarUno(producto)}}>+</Badge></Button>
+        <Button variant='outline-light'><Badge bg="secondary" onClick={() => { setCant(cant+1); setModTotal(!modTotal); sumarUno(producto)}}>+</Badge></Button>
       </td>
       <td className='itemPedido'>{formatMoneda(producto.price)}</td>
       <td className='itemPedido'>{formatMoneda(producto.price * producto.cantidad)}</td>

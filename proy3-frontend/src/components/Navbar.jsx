@@ -97,7 +97,7 @@ const OffCanvas = ({ UserData }) => {
                           </NavDropdown.Item>
                           <NavDropdown.Divider />
                           <NavDropdown.Item>
-                            <NavLink to="/admin/edit/order" onClick={handleClose}>
+                            <NavLink to="/admin/edit/pedido" onClick={handleClose}>
                               Pedidos
                             </NavLink>
                           </NavDropdown.Item>

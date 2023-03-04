@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LayoutProducts from "../layout/LayoutProducts";
 import LayoutProtected from "../layout/LayoutProtected";
 import LayoutPublic from "../layout/LayoutPublic";
+import AdminOrder from "../pages/AdminOrder";
 import AdminProduct from "../pages/AdminProduct";
 import AdminUser from "../pages/AdminUser";
 import Building from "../pages/Building";
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/admin/edit/user/:id",
                         element: <UserEdit />,
+                    },
+                    {
+                        path: "/admin/edit/pedido",
+                        element: <AdminOrder />,
                     },
                 ]
             },

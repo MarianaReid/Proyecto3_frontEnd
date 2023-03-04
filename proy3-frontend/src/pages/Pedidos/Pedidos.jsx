@@ -89,6 +89,7 @@ const Pedidos = () => {
             const pedidos = {
                 users: usuario.id,
                 productsCart: [...listaProductosPedido],
+                total: total,
             };
 
                 const { data } = await createCart(pedidos);
