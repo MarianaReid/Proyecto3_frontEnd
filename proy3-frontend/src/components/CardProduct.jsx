@@ -19,11 +19,6 @@ const CardProduct = ({ _id, image, name, description, price, stock }) => {
             </ListGroup>
             <Card.Body>
                 <Card.Link>
-                    <Link to={"/building"}>
-                        Añadir al carrito
-                    </Link>
-                </Card.Link>
-                <Card.Link>
                     <Link to={`/products/${_id}`}>
                         Ver más
                     </Link>

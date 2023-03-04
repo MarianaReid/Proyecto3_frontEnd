@@ -28,7 +28,7 @@ const Footer = () => {
               <h6 className='text-uppercase fw-bold'>
                 <MDBIcon className="me-3" />
               </h6>
-              <Image src='https://i.postimg.cc/prr2V8VD/Logo-removebg-preview-1.png' fluid />
+              <Image src='https://i.postimg.cc/65tFDWNS/Logo-removebg-preview-1.png' fluid />
             </MDBCol>
             <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0'>
               <h6 className='text-uppercase fw-bold'>Contacto</h6>

@@ -21,10 +21,11 @@ const ProductEdit = () => {
 
     return (
         <div className="container mt-5">
-            <h1 className="text-center mb-4">Panel Administrador</h1>
+            <h1 className="text-center mb-1">Panel Administrador</h1>
+            <h2 className="text-center mb-4 fw-bolder">PRODUCTOS</h2>
             <button
                 className="btn btn-primary my-3 btn-block"
-                onClick={() => navigate('/admin')}
+                onClick={() => navigate('/admin/edit/product')}
             >
                 Ver Tabla de productos
             </button>

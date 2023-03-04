@@ -4,7 +4,7 @@ import "./Registro.css"
 import { cantidadCaracteres, validarclave, validarEmail, validarNombre } from './helperUsuario';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { setLocalStorage } from '../utils/LocalStorageHelper';
+// import { setLocalStorage } from '../utils/LocalStorageHelper';
 
 
 const Registro = ({setUsuarioLogueado}) => {
@@ -66,15 +66,15 @@ const Registro = ({setUsuarioLogueado}) => {
                         parametrosPeticion
                     );
                     if (respuesta.status === 201) {
-                        const data = await respuesta.json();
+                        // const data = await respuesta.json();
 
                         // localStorage.setItem(
                         //     process.env.REACT_APP_LOCALSTORAGE,
                         //     JSON.stringify(data)
                         // );
                         // setUsuarioLogueado(data);
-                        setLocalStorage('token', data.token)
-                        setLocalStorage('userLogged', data.userData)
+                        // setLocalStorage('token', data.token)
+                        // setLocalStorage('userLogged', data.userData)
 
                         Swal.fire({
                             title: 'Registro exitoso',
@@ -82,7 +82,7 @@ const Registro = ({setUsuarioLogueado}) => {
                             showCancelButton: false,
                             confirmButtonText: 'Ok',
                         }).then((result) => {
-                            navigate(-2);
+                            navigate("/login");
                         });
                     } else {
                         setmsjErroremailRepetido(true)

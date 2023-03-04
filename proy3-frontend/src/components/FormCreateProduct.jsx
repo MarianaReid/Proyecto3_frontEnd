@@ -20,6 +20,26 @@ const FormCreateProduct = ({
     const [isLoading, setIsLoading] = useState(false);
     const [selectCategories, setSelectCategories] = useState('')
     const [categories, setCategories] = useState([]);
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }else if (form.checkValidity() === true) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (isEdit) {
+                editProduct();
+            } else {
+                crearProducto();
+            }
+        }
+
+        setValidated(true);
+
+    };
 
     const navigate = useNavigate();
 
@@ -68,18 +88,20 @@ const FormCreateProduct = ({
             'Presiona ok para continuar',
             'success'
         )
-        navigate('/admin');
+        navigate('/admin/edit/product');
     };
 
     return (
         <div>
             <h1>{isEdit ? 'Editar Producto' : 'Agregar Producto'}</h1>
             <Loader isLoading={isLoading || isEditLoading}>
-                <Form>
+                <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control
                             type="text"
+                            maxlength="50"
+                            required
                             value={newProduct?.name}
                             onChange={(e) => handleChange(e)}
                         />
@@ -87,15 +109,19 @@ const FormCreateProduct = ({
                     <Form.Group className="mb-3" controlId="price">
                         <Form.Label>Precio</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="number"
                             value={newProduct?.price}
                             onChange={(e) => handleChange(e)}
+                            min="1"
+                            max="10000000"
+                            required
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="image">
                         <Form.Label>Imágen</Form.Label>
                         <Form.Control
                             type="text"
+                            maxlength="100"
                             value={newProduct?.image}
                             onChange={(e) => handleChange(e)}
                         />
@@ -103,28 +129,33 @@ const FormCreateProduct = ({
                     <Form.Group className="mb-3" controlId="stock">
                         <Form.Label>Stock</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="number"
                             value={newProduct?.stock}
                             onChange={(e) => handleChange(e)}
+                            min="1"
+                            max="10000"
+                            required
                         />
                     </Form.Group>
-                    <Form.Select onChange={(e) => setSelectCategories(e.target.value)}>
+                    <Form.Select
+                        required
+                        onChange={(e) => setSelectCategories(e.target.value)}>
                         <option value=''>Selecciona la categoria</option>
                         {categories.map((category) => (
-                        <option key={category._id} value={category._id}>{category.name}</option>
+                            <option key={category._id} value={category._id}>{category.name}</option>
                         ))}
                     </Form.Select>
                     {isEdit ?
                         (<>
-                            <Button className='my-3 btn-block' variant="warning" type="button" onClick={editProduct}>
+                            <Button className='my-3 btn-block' variant="warning" type="submit">
                                 Editar
                             </Button>
-                            <Button className='my-3 btn-block' variant="danger" type="button" onClick={() => navigate('/admin')}>
+                            <Button className='my-3 btn-block' variant="danger" type="button" onClick={() => navigate('/admin/edit/product')}>
                                 Cancelar
                             </Button>
                         </>)
                         :
-                        (<Button className='my-3 btn-block' variant="success" type="button" onClick={crearProducto}>
+                        (<Button className='my-3 btn-block' variant="success" type="submit">
                             Agregar
                         </Button>)}
                 </Form>
