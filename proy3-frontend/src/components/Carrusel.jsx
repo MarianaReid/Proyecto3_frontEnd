@@ -1,38 +1,39 @@
 import Carousel from 'react-bootstrap/Carousel';
+// como importar css de carrusel
+import "./carrusel.css";
 
 const carouselOp = [
     {
         id: 1,
-        imageOp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqRSTx0BPPyOCNWO9Mhpo5XAITUAAkhBqxKA&usqp=CAU",
-        titleOp: "MENU 1",
-        descriptionOp: "Parrillada Argentina"
+        imageOp: "https://cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/HIFE3WWWW5E4XP2T6DQOOQD5J4.jpg",
+        titleOp: "Asado",
+        descriptionOp: "Argentino"
     },
     {
         id: 2,
-        imageOp: "https://www.buffetcrepeecia.com.br/wp-content/uploads/2017/02/feijoada-paio-275x183.jpg",
-        titleOp: "MENU 2",
-        descriptionOp: "Rica Feijoada Brasileña"
+        imageOp: "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/DEORVD7DUVE2XFAPCFPGZJ76H4.jpg",
+        titleOp: "Feijoada",
+        descriptionOp: "Brasileña"
     },
     {
         id: 3,
-        imageOp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS5hW2w-p78NyBaSTv7YlXezImcGRARjQLvw&usqp=CAU",
-        titleOp: "MENU 3",
-        descriptionOp: 'Imperdibles Tacos Mexicanos'
+        imageOp: "https://i0.wp.com/anamariabraga.globo.com/wp-content/uploads/2019/05/taco-mexicano.jpg?fit=1200%2C675&ssl=1",
+        titleOp: "Tacos",
+        descriptionOp: 'Mexicanos'
     }
 ]
 
 const Opciones = () => {
     return (
-        <Carousel>
+        <Carousel className="carousel-img">
             {
                 carouselOp.map((op) => (
                     <Carousel.Item key={op.id}>
                         <img
-                            className="d-block w-100"
                             src={op.imageOp}
                             alt={op.titleOp}
                         />
-                        <Carousel.Caption>
+                        <Carousel.Caption className="carousel-caption">
                             <h3>{op.titleOp}</h3>
                             <p>{op.descriptionOp}</p>
                         </Carousel.Caption>
