@@ -9,39 +9,35 @@ const Footer = () => {
         <div className='me-5 d-none d-lg-block'>
           <span>Conectate con Nosotros a Nuestras Redes Sociales:</span>
         </div>
-        <div>
-          <a href='https://es-la.facebook.com/' target={'_blank'} className='me-4 text-reset' rel="noreferrer">
+        <div className=''>
+          <a href='https://es-la.facebook.com/' target={'_blank'} className='m-3 text-reset' rel="noreferrer">
             <MDBIcon fab icon="facebook-f" />
           </a>
-          <a href='https://twitter.com/?lang=es' target={'_blank'} className='me-4 text-reset' rel="noreferrer">
+          <a href='https://twitter.com/?lang=es' target={'_blank'} className='m-3 text-reset' rel="noreferrer">
             <MDBIcon fab icon="twitter" />
           </a>
-          <a href='https://www.instagram.com/' target={'_blank'} className='me-4 text-reset' rel="noreferrer">
+          <a href='https://www.instagram.com/' target={'_blank'} className='m-3 text-reset' rel="noreferrer">
             <MDBIcon fab icon="instagram" />
           </a>
         </div>
       </section>
-      <section className=''>
+      <section className='m-auto'>
         <MDBContainer className='text-center text-md-start'>
           <MDBRow className=''>
-            <MDBCol md="3" lg="4" xl="3" className='mx-auto'>
-              <h6 className='text-uppercase fw-bold'>
-                <MDBIcon className="me-3" />
-              </h6>
-              <Image src='https://i.postimg.cc/65tFDWNS/Logo-removebg-preview-1.png' fluid />
+            <MDBCol md="4" lg="4" xl="4" className='mx-auto'>
+              <Image src='https://i.postimg.cc/RVy1BMwD/Logo-removebg-preview.png' fluid />
             </MDBCol>
-            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0'>
+            <MDBCol md="4" lg="4" xl="4" className='m-auto'>
               <h6 className='text-uppercase fw-bold'>Contacto</h6>
+              <hr />
               <p>
-                <MDBIcon icon="home" className="me-2" />
-                Gral. Paz 700
+                <MDBIcon icon="home" className="me-3" />Gral. Paz 700
               </p>
               <p>
-                <MDBIcon icon="envelope" className="me-3" />
-                saboreslatinos@gmail.com
+                <MDBIcon icon="envelope" className="me-3" />saboreslatinos@mail.com
               </p>
               <p>
-                <MDBIcon icon="phone" className="me-3" /> +54 9 3815655412
+                <MDBIcon icon="phone" className="me-3" />+54 9 381 5655 412
               </p>
             </MDBCol>
           </MDBRow>
