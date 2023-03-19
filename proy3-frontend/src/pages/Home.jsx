@@ -2,6 +2,7 @@ import Menu from "../components/Card"
 import { Row, Col, Button } from 'react-bootstrap';
 import Opciones from "../components/Carrusel"
 import { Link, useLoaderData } from "react-router-dom"
+import './home.css'
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
       </Row>
 
       <Row className="text-center">
-        <h2>Categorías</h2>
+        <h2 className="fw-bold" >Categorías</h2>
       </Row>
       <Row>
         {
@@ -25,12 +26,12 @@ const Home = () => {
           ))}
       </Row>
 
-      <Row className="m-auto my-3">
-        <Link to="/products" className="d-grid">
-          <Button variant="outline-dark" size="lg">
+      <Row>
+        <Link to="/products" className="link-css">
+          <Button>
             <i className="fa-sharp fa-solid fa-magnifying-glass">
-              <span className="mx-3">Buscador de productos</span>
             </i>
+            <span>Buscador de productos</span>
           </Button>
         </Link>
       </Row>
@@ -42,14 +43,14 @@ export default Home
 
 export const loaderCategories = async () => {
   const res = await fetch("https://proyecto3-rolling-code-los-crack.vercel.app/api/categories?limit=20&page=1");
-  
-  if(!res.ok)
-  // eslint-disable-next-line no-throw-literal
-  throw {
+
+  if (!res.ok)
+    // eslint-disable-next-line no-throw-literal
+    throw {
       status: res.status,
       statusText: "No encontrado",
-  };
-  
+    };
+
   const categories = await res.json();
 
   return { categories };
