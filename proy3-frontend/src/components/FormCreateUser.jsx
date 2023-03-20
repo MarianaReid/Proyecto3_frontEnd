@@ -105,7 +105,7 @@ const FormCreateUser = ({
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="password">
                         <Form.Label>Contraseña</Form.Label>
-                        <Form.Control
+                        <Form.Control required
                             type="password"
                             value={newUser?.password}
                             onChange={(e) => handleChange(e)}
