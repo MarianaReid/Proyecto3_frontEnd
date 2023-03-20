@@ -18,7 +18,6 @@ const FormCreateProduct = ({
 }) => {
     const [newProduct, setNewProduct] = useState({});
     const [isLoading, setIsLoading] = useState(false);
-    const [selectCategories, setSelectCategories] = useState('')
     const [categories, setCategories] = useState([]);
     const [validated, setValidated] = useState(false);
 
@@ -27,7 +26,7 @@ const FormCreateProduct = ({
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-        }else if (form.checkValidity() === true) {
+        } else if (form.checkValidity() === true) {
             event.preventDefault();
             event.stopPropagation();
             if (isEdit) {
@@ -65,7 +64,7 @@ const FormCreateProduct = ({
 
     const crearProducto = async () => {
         setIsLoading(true);
-        const { data } = await createProducts({ ...newProduct, categories: selectCategories });
+        const { data } = await createProducts({ ...newProduct });
         setNewProduct({});
         Swal.fire(
             'Producto creado!',
@@ -137,14 +136,19 @@ const FormCreateProduct = ({
                             required
                         />
                     </Form.Group>
-                    <Form.Select
-                        required
-                        onChange={(e) => setSelectCategories(e.target.value)}>
-                        <option value=''>Selecciona la categoria</option>
-                        {categories.map((category) => (
-                            <option key={category._id} value={category._id}>{category.name}</option>
-                        ))}
-                    </Form.Select>
+                    <Form.Group className="mb-3" controlId="categories">
+                        <Form.Label>Categoria</Form.Label>
+                        <Form.Select
+                            required
+                            value={newProduct?.categories?._id}
+                            onChange={(e) => handleChange(e)}>
+
+                            <option value="">Selecciona una categoría</option>
+                            {categories.map((category) => (
+                                <option key={category._id} value={category._id}>{category.name}</option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
                     {isEdit ?
                         (<>
                             <Button className='my-3 btn-block' variant="warning" type="submit">
