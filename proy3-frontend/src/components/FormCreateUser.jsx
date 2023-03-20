@@ -24,7 +24,7 @@ const FormCreateUser = ({
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-        }else if (form.checkValidity() === true) {
+        } else if (form.checkValidity() === true) {
             event.preventDefault();
             event.stopPropagation();
             if (isEdit) {
@@ -52,7 +52,7 @@ const FormCreateUser = ({
 
     const crearUsuario = async () => {
         setIsLoading(true);
-        const { data } = await createUsers({ ...newUser});
+        const { data } = await createUsers({ ...newUser });
         setNewUser({});
         Swal.fire(
             'Usuario creado!',
@@ -110,6 +110,28 @@ const FormCreateUser = ({
                             value={newUser?.password}
                             onChange={(e) => handleChange(e)}
                         />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="role">
+                        <Form.Label>Rol</Form.Label>
+                        <Form.Select required
+                            value={newUser?.role}
+                            onChange={(e) => handleChange(e)}
+                        >
+                            <option value=''>Seleccione una opción</option>
+                            <option value='ADMIN'>Administrador</option>
+                            <option value='CLIENT'>Cliente</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='isActive'>
+                        <Form.Label>Estado</Form.Label>
+                        <Form.Select required
+                            value={newUser?.isActive}
+                            onChange={(e) => handleChange(e)}
+                        >
+                            <option value=''>Seleccione una opción</option>
+                            <option value={true}>Activo</option>
+                            <option value={false}>Inactivo</option>
+                        </Form.Select>
                     </Form.Group>
                     {isEdit ?
                         (<>
