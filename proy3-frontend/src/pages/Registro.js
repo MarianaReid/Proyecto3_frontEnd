@@ -49,8 +49,7 @@ const Registro = ({setUsuarioLogueado}) => {
                     name: nombre,
                     email,
                     password: clave,
-                    // estado: true,
-                    // perfil: false,
+                    role: "CLIENT",
                 };
 
                 try {
