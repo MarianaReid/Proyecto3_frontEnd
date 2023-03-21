@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Swal from 'sweetalert2';
-import { createUsers, updateUser } from '../services/userService';
+import { createUsers, getAllUsers, updateUser } from '../services/userService';
 
 const FormCreateUser = ({
     setCreateUser,
@@ -16,6 +16,7 @@ const FormCreateUser = ({
     userId,
 }) => {
     const [newUser, setNewUser] = useState({});
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [validated, setValidated] = useState(false);
 
@@ -50,7 +51,30 @@ const FormCreateUser = ({
         setIsLoading(false);
     }, [usuario]);
 
+
+    useEffect(() => {
+        setIsLoading(true);
+        const fetchUsers = async () => {
+            const { data } = await getAllUsers();
+            setUsers(data.docs);
+        };
+        fetchUsers();
+        setIsLoading(false);
+    }, []);
+
     const crearUsuario = async () => {
+
+        const userEmail = users.find((user) => user.email === newUser.email);
+
+        if (userEmail && userEmail._id !== userId) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El email ya existe!',
+            })
+            return;
+        }
+
         setIsLoading(true);
         const { data } = await createUsers({ ...newUser });
         setNewUser({});
@@ -67,6 +91,17 @@ const FormCreateUser = ({
     };
 
     const editUser = async () => {
+
+        const userEmail = users.find((user) => user.email === newUser.email);
+
+        if (userEmail && userEmail._id !== userId) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El email ya existe!',
+            })
+            return;
+        }
         setIsLoading(true);
         await updateUser(userId, newUser);
         setIsLoading(false);
