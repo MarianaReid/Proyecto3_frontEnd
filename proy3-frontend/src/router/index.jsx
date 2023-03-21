@@ -6,6 +6,7 @@ import AdminOrder from "../pages/AdminOrder";
 import AdminProduct from "../pages/AdminProduct";
 import AdminUser from "../pages/AdminUser";
 import Building from "../pages/Building";
+import CartDetail, { loaderCart } from "../pages/CartDetail";
 import Category, { loaderCategory } from "../pages/Category";
 import Error from "../pages/Error";
 import Home, { loaderCategories } from "../pages/Home";
@@ -85,6 +86,11 @@ export const router = createBrowserRouter([
                         path: "/admin/edit/pedido",
                         element: <AdminOrder />,
                     },
+                    {
+                        path: "/cart/:id",
+                        element: <CartDetail />,
+                        loader: loaderCart,
+                    }
                 ]
             },
             {

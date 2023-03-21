@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Button, Form, InputGroup, Table } from 'react-bootstrap';
-import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 import Loader from '../components/Loader';
-import { getAllCarts, updateCart } from '../services/cartsService';
+import { getAllCarts } from '../services/cartsService';
 
 const AdminOrder = () => {
     const [orders, setOrders] = useState([]);
@@ -27,17 +27,6 @@ const AdminOrder = () => {
         setOrdersSearch(search)
     }, [term, orders])
 
-    const editCart = async (_id, isActive) => {
-        setLoading(true);
-        await updateCart(_id, isActive);
-        setLoading(false);
-        Swal.fire(
-            'Pedido entregado!',
-            'Presiona ok para continuar',
-            'success'
-        )
-    };
-
     return (
         <div className="container mt-5">
             <h1 className="text-center mb-1">Panel Administrador</h1>
@@ -57,7 +46,7 @@ const AdminOrder = () => {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nombre</th>
+                            <th>E-mail</th>
                             <th>Total</th>
                             <th>Estado</th>
                         </tr>
@@ -66,21 +55,14 @@ const AdminOrder = () => {
                         {ordersSearch.map((order, index) => (
                             <tr key={order._id} >
                                 <td>{++index}</td>
-                                <td>{order.users.name}</td>
+                                <td>{order.users.email}</td>
                                 <td>$ {order.total}</td>
                                 <td>
-                                    <Button
-                                        type="button"
-                                        size="sm"
-                                        className="m-1"
-                                        {...!order.isActive ? { variant: "warning" } : { variant: "success" }}
-                                        {...!order.isActive ? { disabled: false } : { disabled: true }}
-                                        onClick={() => {
-                                            editCart(order._id, {isActive: !order.isActive})
-                                        }}
-                                    >
-                                        {order.isActive ? "E" : "P"}
-                                    </Button>
+                                    <Link to={`/cart/${order._id}`}>
+                                        <Button variant={order.isActive ? 'success' : 'warning'} className='btn-block'>
+                                            Ver más
+                                        </Button>
+                                    </Link>
                                 </td>
                             </tr>
                         ))}

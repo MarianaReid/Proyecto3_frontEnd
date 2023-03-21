@@ -8,13 +8,13 @@ export const getAllCarts = async () => {
     }
 }
 
-// export const getOneProduct = async (id) => {
-//     try {
-//         return await clientAxios.get(`/product/${id}`)
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+export const getOneCart = async (id) => {
+    try {
+        return await clientAxios.get(`/cart/${id}`)
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 export const createCart = async (data) => {
     try {
