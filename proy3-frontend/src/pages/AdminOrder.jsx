@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { Button, Form, InputGroup, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -42,13 +43,13 @@ const AdminOrder = () => {
                         onChange={(e) => setTerm(e.target.value)}
                     />
                 </InputGroup>
-                <Table striped bordered hover variant="dark" className='m-auto my-4'>
+                <Table responsive striped bordered hover variant="dark" className='m-auto my-4'>
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>E-mail</th>
                             <th>Total</th>
-                            <th>Estado</th>
+                            <th>Info</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,11 +57,11 @@ const AdminOrder = () => {
                             <tr key={order._id} >
                                 <td>{++index}</td>
                                 <td>{order.users.email}</td>
-                                <td>$ {order.total}</td>
+                                <td>${order.total}</td>
                                 <td>
                                     <Link to={`/cart/${order._id}`}>
-                                        <Button variant={order.isActive ? 'success' : 'warning'} className='btn-block'>
-                                            Ver más
+                                        <Button variant={order.isActive ? 'outline-success' : 'outline-warning'} size="sm">
+                                            <span>info</span>
                                         </Button>
                                     </Link>
                                 </td>
