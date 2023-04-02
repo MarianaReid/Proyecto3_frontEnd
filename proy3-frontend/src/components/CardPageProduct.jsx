@@ -5,7 +5,7 @@ import { AgregarCarrito } from '../pages/Pedidos/HelperCarrito'
 
 const CardPageProduct = ({ _id, product, image, name, description, price, stock }) => {
     const navigate = useNavigate();
-    
+
     return (
         <Card className='m-auto my-3'>
             <Card.Header className='m-auto text-center'>{name}</Card.Header>
@@ -21,7 +21,16 @@ const CardPageProduct = ({ _id, product, image, name, description, price, stock 
             </ListGroup>
             <Card.Body>
                 <Card.Link>
-                <Button variant='success' onClick={() => {AgregarCarrito(product); navigate("/products/pedidos");} }>Añadir al carrito</Button>
+                    {
+                        stock === 0 ?
+                            <Button variant='danger' disabled>Sin Stock</Button>
+                            :
+                            <Button variant='success' onClick={() => {
+                                AgregarCarrito(product);
+                                navigate("/products/pedidos");
+                            }
+                            }>Añadir al carrito</Button>
+                    }
                 </Card.Link>
             </Card.Body>
         </Card>

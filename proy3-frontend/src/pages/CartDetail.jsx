@@ -4,6 +4,7 @@ import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { updateCart } from '../services/cartsService';
 import './cartdetail.css'
+import { updateProduct } from '../services/productsService';
 
 const CartDetail = () => {
 
@@ -30,6 +31,10 @@ const CartDetail = () => {
   const editisActive = async () => {
 
     await updateCart(cart._id, cartisActive);
+
+    cart.productsCart.map(async (product) => {
+      await updateProduct(product._id, { stock: product.stock - product.cantidad });
+    });
 
     Swal.fire(
       'Presiona ok para continuar',
