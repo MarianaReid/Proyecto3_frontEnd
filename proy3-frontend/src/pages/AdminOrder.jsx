@@ -58,11 +58,17 @@ const AdminOrder = () => {
                                 <td>{order.users.email}</td>
                                 <td>${order.total}</td>
                                 <td>
-                                    <Link to={`/cart/${order._id}`}>
-                                        <Button variant={order.isActive ? 'outline-success' : 'outline-warning'} size="sm">
-                                            <span>info</span>
+                                    {!order.isActive ? (
+                                        <Link to={`/cart/${order._id}`}>
+                                            <Button variant='outline-warning' size="sm">
+                                                <span>Ver</span>
+                                            </Button>
+                                        </Link>
+                                    ) : (
+                                        <Button variant='outline-success' size="sm" disabled>
+                                            <span>Listo</span>
                                         </Button>
-                                    </Link>
+                                    )}
                                 </td>
                             </tr>
                         ))}
