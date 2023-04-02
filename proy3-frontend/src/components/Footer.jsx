@@ -24,10 +24,10 @@ const Footer = () => {
       <section className='m-auto'>
         <MDBContainer className='text-center text-md-start'>
           <MDBRow className=''>
-            <MDBCol md="4" lg="4" xl="4" className='mx-auto'>
+            <MDBCol md="5" lg="4" xl="4" className='m-auto'>
               <Image src='https://i.postimg.cc/RVy1BMwD/Logo-removebg-preview.png' fluid />
             </MDBCol>
-            <MDBCol md="4" lg="4" xl="4" className='m-auto'>
+            <MDBCol md="5" lg="4" xl="4" className='m-auto'>
               <h6 className='text-uppercase fw-bold'>Contacto</h6>
               <hr />
               <p>
